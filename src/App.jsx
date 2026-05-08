@@ -2,6 +2,7 @@ import "./index.css";
 import ParticleCanvas    from "./components/ParticleCanvas";
 import Navbar            from "./components/Navbar";
 import Hero              from "./components/Hero";
+import VideoPreview      from "./components/VideoPreview";
 import About             from "./components/About";
 import Skills            from "./components/Skills";
 import Projects          from "./components/Projects";
@@ -20,6 +21,7 @@ export default function App() {
       {/* Page sections */}
       <main>
         <Hero />
+        <VideoPreview />
         <About />
         <Skills />
         <Projects />
