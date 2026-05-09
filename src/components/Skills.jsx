@@ -1,68 +1,135 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useReveal } from "../hooks/useReveal";
 import { SKILLS } from "../data";
+
+const META = {
+  Mobile: {
+    icon: "mobile",
+    accent: "#f07b66",
+    note: "Cross-platform apps",
+  },
+  "State Mgmt": {
+    icon: "state",
+    accent: "#d4a847",
+    note: "Predictable flows",
+  },
+  Backend: {
+    icon: "backend",
+    accent: "#7ec8ff",
+    note: "APIs and auth",
+  },
+  "Cloud / DB": {
+    icon: "cloud",
+    accent: "#80e6bd",
+    note: "Data and delivery",
+  },
+  Architecture: {
+    icon: "architecture",
+    accent: "#b9a7ff",
+    note: "Production systems",
+  },
+};
+
+function SkillIcon({ type }) {
+  const common = {
+    width: 22,
+    height: 22,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": "true",
+  };
+
+  if (type === "mobile") {
+    return (
+      <svg {...common}>
+        <rect x="7" y="2" width="10" height="20" rx="2" />
+        <path d="M11 18h2" />
+      </svg>
+    );
+  }
+
+  if (type === "state") {
+    return (
+      <svg {...common}>
+        <path d="M4 7h8" />
+        <path d="M12 7a4 4 0 1 1 4 4" />
+        <path d="M20 17h-8" />
+        <path d="M12 17a4 4 0 1 1-4-4" />
+      </svg>
+    );
+  }
+
+  if (type === "backend") {
+    return (
+      <svg {...common}>
+        <rect x="3" y="4" width="18" height="6" rx="2" />
+        <rect x="3" y="14" width="18" height="6" rx="2" />
+        <path d="M7 7h.01" />
+        <path d="M7 17h.01" />
+      </svg>
+    );
+  }
+
+  if (type === "cloud") {
+    return (
+      <svg {...common}>
+        <path d="M17.5 19H8a5 5 0 1 1 1-9.9A6 6 0 0 1 20 12.5 3.5 3.5 0 0 1 17.5 19Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...common}>
+      <path d="M12 3 4 7v6c0 5 3.4 7.6 8 8 4.6-.4 8-3 8-8V7l-8-4Z" />
+      <path d="m9 12 2 2 4-5" />
+    </svg>
+  );
+}
 
 export default function Skills() {
   const [hdrRef, hdrVis] = useReveal();
 
   return (
-    <section
-      id="skills"
-      style={{
-        padding: "100px 0",
-        background: "rgba(13,27,42,.5)",
-        position: "relative", zIndex: 1,
-        borderTop: "1px solid rgba(238,242,247,.05)",
-        borderBottom: "1px solid rgba(238,242,247,.05)",
-      }}
-    >
-      <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 40px" }}>
-        {/* Header */}
+    <section id="skills" className="skills-section">
+      <div className="skills-glow skills-glow-one" aria-hidden="true" />
+      <div className="skills-glow skills-glow-two" aria-hidden="true" />
+
+      <div className="skills-wrap">
         <div
           ref={hdrRef}
+          className="skills-header"
           style={{
-            display: "flex", justifyContent: "space-between",
-            alignItems: "flex-end", marginBottom: 56,
-            flexWrap: "wrap", gap: 20,
             opacity: hdrVis ? 1 : 0,
             transform: hdrVis ? "none" : "translateY(38px)",
-            transition: "opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)",
+            transition:
+              "opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)",
           }}
         >
           <div>
-            <p style={{
-              fontFamily: "'Space Mono', monospace",
-              fontSize: 11, fontWeight: 700, letterSpacing: ".18em",
-              textTransform: "uppercase", color: "#e8604a", marginBottom: 10,
-            }}>
-              Tech Stack
-            </p>
-            <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontSize: "clamp(32px, 4vw, 56px)",
-              fontWeight: 900, letterSpacing: 0, lineHeight: 1.0,
-              textTransform: "uppercase", color: "#eef2f7",
-            }}>
-              What I build with
-            </h2>
+            <p className="skills-kicker">Tech Stack</p>
+            <h2>Delivery Stack</h2>
           </div>
-          <p style={{
-            fontFamily: "'Barlow', sans-serif",
-            color: "rgba(106,139,168,.7)", fontSize: 14,
-            maxWidth: 280, textAlign: "right", lineHeight: 1.7,
-          }}>
-            From pixel-perfect mobile UI to backend infrastructure — full delivery stack.
-          </p>
+
+          <div className="skills-header-panel">
+            <p>
+              From pixel-perfect mobile UI to backend infrastructure, I work
+              across the full product delivery stack.
+            </p>
+            <div>
+              <span>Mobile</span>
+              <span>Backend</span>
+              <span>Cloud</span>
+            </div>
+          </div>
         </div>
 
-        {/* Grid */}
-        <div className="skills-grid" style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5,1fr)",
-          gap: 16,
-        }}>
-          {SKILLS.map((s, i) => (
-            <SkillCard key={i} data={s} delay={i * 0.08} />
+        <div className="skills-grid">
+          {SKILLS.map((skill, index) => (
+            <SkillCard key={skill.cat} data={skill} delay={index * 0.08} />
           ))}
         </div>
       </div>
@@ -71,47 +138,42 @@ export default function Skills() {
 }
 
 function SkillCard({ data, delay }) {
-  const [ref, vis]        = useReveal();
+  const [ref, vis] = useReveal();
   const [hovered, setHovered] = useState(false);
+  const meta = META[data.cat] || META.Architecture;
 
   return (
     <div
       ref={ref}
+      className="skill-card"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        padding: "26px 20px", borderRadius: 18,
-        background: hovered ? "rgba(21,35,53,.95)" : "rgba(13,27,42,.8)",
-        border: `1px solid ${hovered ? "rgba(232,96,74,.3)" : "rgba(238,242,247,.07)"}`,
-        transition: "all .35s",
-        transform: hovered ? "translateY(-5px)" : vis ? "none" : "translateY(38px)",
+        "--skill-accent": meta.accent,
+        transform: hovered ? "translateY(-6px)" : vis ? "none" : "translateY(38px)",
         opacity: vis ? 1 : 0,
         transitionDelay: delay + "s",
-        position: "relative", overflow: "hidden",
       }}
     >
-      {/* Bottom accent bar */}
-      <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: 2,
-        background: "linear-gradient(90deg,#e8604a,#d4a847)",
-        transform: hovered ? "scaleX(1)" : "scaleX(0)",
-        transformOrigin: "left",
-        transition: "transform .45s cubic-bezier(.16,1,.3,1)",
-      }} />
-
-      <div style={{
-        fontFamily: "'Space Mono', monospace",
-        fontSize: 9, fontWeight: 700, color: "#e8604a",
-        letterSpacing: ".16em", textTransform: "uppercase", marginBottom: 18,
-      }}>
-        {data.cat}
+      <div className="skill-card-top">
+        <span className="skill-card-icon">
+          <SkillIcon type={meta.icon} />
+        </span>
+        <span className="skill-card-count">{data.items.length} tools</span>
       </div>
-      {data.items.map((item, j) => (
-        <div key={j} style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: 10 }}>
-          <div style={{ width: 4, height: 4, borderRadius: "50%", background: "rgba(232,96,74,.5)", flexShrink: 0 }} />
-          <span style={{ fontFamily: "'Barlow', sans-serif", fontSize: 13, color: "rgba(238,242,247,.65)" }}>{item}</span>
-        </div>
-      ))}
+
+      <div className="skill-card-title">
+        <p>{data.cat}</p>
+        <span>{meta.note}</span>
+      </div>
+
+      <div className="skill-chip-list">
+        {data.items.map((item) => (
+          <span key={item} className="skill-chip">
+            {item}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

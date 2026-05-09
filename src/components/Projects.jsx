@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useReveal } from "../hooks/useReveal";
 import { PROJECTS } from "../data";
 import ProjectModal from "./ProjectModal";
+import { StoreIcon } from "./StoreIcons";
 
 export default function Projects() {
   const [hdrRef, hdrVis] = useReveal();
@@ -82,9 +83,9 @@ function ProjectCard({ project, delay, onClick }) {
   }
 
   const linksHTML = [];
-  if (links?.ios)     linksHTML.push({ href: links.ios,     label: "🍎 iOS"     });
-  if (links?.driver)  linksHTML.push({ href: links.driver,  label: "🚗 Driver"  });
-  if (links?.android) linksHTML.push({ href: links.android, label: "🤖 Android" });
+  if (links?.ios)     linksHTML.push({ href: links.ios,     label: "App Store",  type: "apple"  });
+  if (links?.driver)  linksHTML.push({ href: links.driver,  label: "Driver App", type: "driver" });
+  if (links?.android) linksHTML.push({ href: links.android, label: "Play Store", type: "play"   });
 
   return (
     <div
@@ -167,7 +168,7 @@ function ProjectCard({ project, delay, onClick }) {
         </div>
         <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
           <div style={{ display:"flex",gap:6 }}>
-            {linksHTML.map(({ href, label }) => (
+            {linksHTML.map(({ href, label, type }) => (
               <a
                 key={label} href={href} target="_blank" rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
@@ -177,6 +178,7 @@ function ProjectCard({ project, delay, onClick }) {
                   background:`${color}22`,color,transition:"all .2s",
                 }}
               >
+                <StoreIcon type={type} />
                 {label}
               </a>
             ))}

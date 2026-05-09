@@ -2,6 +2,7 @@ import "./index.css";
 import ParticleCanvas    from "./components/ParticleCanvas";
 import Navbar            from "./components/Navbar";
 import Hero              from "./components/Hero";
+import IntroVideoButton  from "./components/IntroVideoButton";
 import VideoPreview      from "./components/VideoPreview";
 import About             from "./components/About";
 import Skills            from "./components/Skills";
@@ -17,6 +18,7 @@ export default function App() {
 
       {/* Fixed navigation */}
       <Navbar />
+      <IntroVideoButton />
 
       {/* Page sections */}
       <main>

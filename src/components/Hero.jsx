@@ -1,7 +1,7 @@
 import { useTyping } from "../hooks/useTyping";
 import { HERO } from "../data";
 import epic1 from "../images/epicRides/pic1.png";
-import hadafi1 from "../images/hadafi/Phone SS 1.jpg";
+import hadafi1 from "../images/hadafi/Phone SS 2.jpg";
 import rightAway1 from "../images/rideAway/0x0ss.png";
 
 const C = {
@@ -351,8 +351,6 @@ function ProjectSpotlight() {
 
       <MiniPreview
         img={hadafi1}
-        title="Hadafi"
-        subtitle="Sports-tech"
         style={{
           left: 0,
           top: 140,
@@ -362,8 +360,6 @@ function ProjectSpotlight() {
 
       <MiniPreview
         img={epic1}
-        title="Epic Rides"
-        subtitle="Ride-sharing"
         style={{
           right: 0,
           top: 166,
@@ -489,7 +485,7 @@ function MiniPreview({ img, title, subtitle, style }) {
     >
       <div
         style={{
-          height: 264,
+          height: 364,
           borderRadius: 23,
           overflow: "hidden",
           border: "1px solid rgba(238,242,247,.12)",
@@ -510,41 +506,9 @@ function MiniPreview({ img, title, subtitle, style }) {
           }}
         />
       </div>
-      <div
-        style={{
-          width: "max-content",
-          maxWidth: "100%",
-          margin: "10px auto 0",
-          padding: "7px 11px",
-          borderRadius: 12,
-          background: "rgba(13,27,42,.88)",
-          border: "1px solid rgba(238,242,247,.1)",
-          textAlign: "center",
-        }}
-      >
-        <div
-          style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontSize: 15,
-            fontWeight: 800,
-            color: C.white,
-            lineHeight: 1,
-            textTransform: "uppercase",
-          }}
-        >
-          {title}
-        </div>
-        <div
-          style={{
-            fontFamily: "'Space Mono', monospace",
-            fontSize: 8,
-            color: C.muted,
-            marginTop: 4,
-          }}
-        >
-          {subtitle}
-        </div>
-      </div>
+      
+      
+      
     </div>
   );
 }
