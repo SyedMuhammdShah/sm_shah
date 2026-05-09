@@ -15,13 +15,13 @@ export default function ParticleCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const pts = Array.from({ length: 70 }, () => ({
+    const pts = Array.from({ length: 60 }, () => ({
       x:  Math.random() * 2000,
       y:  Math.random() * 1000,
-      vx: (Math.random() - 0.5) * 0.28,
-      vy: (Math.random() - 0.5) * 0.28,
-      r:  Math.random() * 1.2 + 0.3,
-      o:  Math.random() * 0.3 + 0.06,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: (Math.random() - 0.5) * 0.22,
+      r:  Math.random() * 1.1 + 0.3,
+      o:  Math.random() * 0.22 + 0.05,
     }));
 
     function draw() {
@@ -33,7 +33,7 @@ export default function ParticleCanvas() {
         if (p.y < 0 || p.y > H) p.vy *= -1;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,229,160,${p.o})`;
+        ctx.fillStyle = `rgba(232,96,74,${p.o})`;
         ctx.fill();
       });
 
@@ -42,11 +42,11 @@ export default function ParticleCanvas() {
           const dx = pts[i].x - pts[j].x;
           const dy = pts[i].y - pts[j].y;
           const d  = Math.sqrt(dx * dx + dy * dy);
-          if (d < 130) {
+          if (d < 120) {
             ctx.beginPath();
             ctx.moveTo(pts[i].x, pts[i].y);
             ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.strokeStyle = `rgba(0,229,160,${0.05 * (1 - d / 130)})`;
+            ctx.strokeStyle = `rgba(232,96,74,${0.045 * (1 - d / 120)})`;
             ctx.lineWidth   = 0.5;
             ctx.stroke();
           }
@@ -65,10 +65,7 @@ export default function ParticleCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      style={{
-        position: "fixed", inset: 0,
-        zIndex: 0, pointerEvents: "none",
-      }}
+      style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}
     />
   );
 }

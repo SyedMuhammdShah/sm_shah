@@ -22,14 +22,14 @@ export default function Projects() {
           }}
         >
           <div>
-            <p style={{ fontSize:11,fontWeight:700,letterSpacing:".18em",textTransform:"uppercase",color:"#00e5a0",marginBottom:10 }}>
+            <p style={{ fontFamily:"'Space Mono',monospace",fontSize:11,fontWeight:700,letterSpacing:".18em",textTransform:"uppercase",color:"#e8604a",marginBottom:10 }}>
               Portfolio
             </p>
-            <h2 style={{ fontFamily:"'Syne',sans-serif",fontSize:"clamp(28px,4vw,52px)",fontWeight:800,letterSpacing:-1.5,lineHeight:1.05 }}>
+            <h2 style={{ fontFamily:"'Barlow Condensed',sans-serif",fontSize:"clamp(32px,4vw,56px)",fontWeight:900,letterSpacing:0,lineHeight:1.0,textTransform:"uppercase",color:"#eef2f7" }}>
               Featured Projects
             </h2>
           </div>
-          <p style={{ fontSize:13,color:"rgba(255,255,255,.3)",textAlign:"right",maxWidth:220,lineHeight:1.6 }}>
+          <p style={{ fontFamily:"'Barlow',sans-serif",fontSize:14,color:"rgba(106,139,168,.65)",textAlign:"right",maxWidth:220,lineHeight:1.6 }}>
             Click any card to explore screenshots &amp; live links
           </p>
         </div>
@@ -94,8 +94,8 @@ function ProjectCard({ project, delay, onClick }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         borderRadius: 22, overflow: "hidden",
-        background: "rgba(255,255,255,.025)",
-        border: `1px solid ${hovered ? color + "55" : "rgba(255,255,255,.07)"}`,
+        background: hovered ? "rgba(21,35,53,.95)" : "rgba(13,27,42,.8)",
+        border: `1px solid ${hovered ? color + "55" : "rgba(238,242,247,.07)"}`,
         cursor: "pointer",
         transition: "all .4s cubic-bezier(.16,1,.3,1)",
         display: "flex", flexDirection: "column",
@@ -134,7 +134,7 @@ function ProjectCard({ project, delay, onClick }) {
         {/* Gradient overlay */}
         <div style={{
           position:"absolute",bottom:0,left:0,right:0,height:90,
-          background:"linear-gradient(to top,#0c1020,transparent)",
+          background:"linear-gradient(to top,#080f18,transparent)",
           pointerEvents:"none",zIndex:10,
         }} />
       </div>
@@ -149,18 +149,19 @@ function ProjectCard({ project, delay, onClick }) {
             }}>{t}</span>
           ))}
         </div>
-        <div style={{ fontFamily:"'Syne',sans-serif",fontSize:20,fontWeight:700,color:"#fff",marginBottom:3,letterSpacing:-.3 }}>
+        <div style={{ fontFamily:"'Barlow Condensed',sans-serif",fontSize:22,fontWeight:900,color:"#eef2f7",marginBottom:3,textTransform:"uppercase",letterSpacing:.3 }}>
           {title}
         </div>
-        <div style={{ fontSize:12,fontWeight:700,color,marginBottom:12 }}>{sub}</div>
-        <div style={{ fontSize:12,color:"rgba(255,255,255,.35)",lineHeight:1.72,flex:1,marginBottom:16 }}>
+        <div style={{ fontFamily:"'Barlow',sans-serif",fontSize:12,fontWeight:700,color,marginBottom:12 }}>{sub}</div>
+        <div style={{ fontFamily:"'Barlow',sans-serif",fontSize:13,color:"rgba(106,139,168,.7)",lineHeight:1.72,flex:1,marginBottom:16 }}>
           {desc.split("\n")[0].slice(0, 120)}...
         </div>
         <div style={{ display:"flex",flexWrap:"wrap",gap:5,marginBottom:14 }}>
           {tech.slice(0,4).map((t) => (
             <span key={t} style={{
-              fontSize:10,padding:"3px 8px",borderRadius:5,
-              background:"rgba(255,255,255,.05)",color:"rgba(255,255,255,.35)",
+              fontFamily:"'Space Mono',monospace",
+              fontSize:9,padding:"3px 8px",borderRadius:5,
+              background:"rgba(238,242,247,.05)",color:"rgba(106,139,168,.6)",
             }}>{t}</span>
           ))}
         </div>

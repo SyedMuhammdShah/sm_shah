@@ -9,9 +9,11 @@ export default function Experience() {
     <section
       id="experience"
       style={{
-        padding: "90px 0",
-        background: "rgba(255,255,255,.007)",
+        padding: "100px 0",
+        background: "rgba(13,27,42,.5)",
         position: "relative", zIndex: 1,
+        borderTop: "1px solid rgba(238,242,247,.05)",
+        borderBottom: "1px solid rgba(238,242,247,.05)",
       }}
     >
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 40px" }}>
@@ -24,15 +26,24 @@ export default function Experience() {
             transition: "opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)",
           }}
         >
-          <p style={{ fontSize:11,fontWeight:700,letterSpacing:".18em",textTransform:"uppercase",color:"#00e5a0",marginBottom:10 }}>
+          <p style={{
+            fontFamily: "'Space Mono', monospace",
+            fontSize: 11, fontWeight: 700, letterSpacing: ".18em",
+            textTransform: "uppercase", color: "#e8604a", marginBottom: 10,
+          }}>
             Work History
           </p>
-          <h2 style={{ fontFamily:"'Syne',sans-serif",fontSize:"clamp(28px,4vw,52px)",fontWeight:800,letterSpacing:-1.5,lineHeight:1.05 }}>
+          <h2 style={{
+            fontFamily: "'Barlow Condensed', sans-serif",
+            fontSize: "clamp(32px,4vw,56px)",
+            fontWeight: 900, letterSpacing: 0, lineHeight: 1.0,
+            textTransform: "uppercase", color: "#eef2f7",
+          }}>
             Professional Experience
           </h2>
         </div>
 
-        <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:16 }}>
+        <div className="exp-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           {EXPERIENCE.map((e, i) => (
             <ExpCard key={i} data={e} delay={i * 0.07} />
           ))}
@@ -43,7 +54,7 @@ export default function Experience() {
 }
 
 function ExpCard({ data, delay }) {
-  const [ref, vis]       = useReveal();
+  const [ref, vis]            = useReveal();
   const [hovered, setHovered] = useState(false);
   const { company, role, period, color, desc } = data;
 
@@ -54,8 +65,8 @@ function ExpCard({ data, delay }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         padding: "28px 30px", borderRadius: 20,
-        background: hovered ? "rgba(255,255,255,.04)" : "rgba(255,255,255,.025)",
-        border: "1px solid rgba(255,255,255,.07)",
+        background: hovered ? "rgba(21,35,53,.95)" : "rgba(13,27,42,.8)",
+        border: "1px solid rgba(238,242,247,.07)",
         borderLeft: `3px solid ${color}`,
         transition: "all .3s",
         transform: vis
@@ -66,24 +77,35 @@ function ExpCard({ data, delay }) {
       }}
     >
       <div style={{
-        display:"flex",justifyContent:"space-between",
-        alignItems:"flex-start",marginBottom:12,flexWrap:"wrap",gap:8,
+        display: "flex", justifyContent: "space-between",
+        alignItems: "flex-start", marginBottom: 12, flexWrap: "wrap", gap: 8,
       }}>
         <div>
-          <div style={{ fontFamily:"'Syne',sans-serif",fontSize:17,fontWeight:700,color:"#fff" }}>
+          <div style={{
+            fontFamily: "'Barlow Condensed', sans-serif",
+            fontSize: 19, fontWeight: 700,
+            color: "#eef2f7", textTransform: "uppercase", letterSpacing: .3,
+          }}>
             {company}
           </div>
-          <div style={{ fontSize:12,fontWeight:700,color,marginTop:3 }}>{role}</div>
+          <div style={{
+            fontFamily: "'Barlow', sans-serif",
+            fontSize: 12, fontWeight: 700, color, marginTop: 3,
+          }}>{role}</div>
         </div>
         <span style={{
-          fontSize:10,color:"rgba(255,255,255,.32)",
-          padding:"4px 11px",borderRadius:20,
-          background:"rgba(255,255,255,.04)",whiteSpace:"nowrap",
+          fontFamily: "'Space Mono', monospace",
+          fontSize: 10, color: "rgba(106,139,168,.7)",
+          padding: "4px 11px", borderRadius: 20,
+          background: "rgba(238,242,247,.04)", whiteSpace: "nowrap",
         }}>
           {period}
         </span>
       </div>
-      <p style={{ fontSize:13,color:"rgba(255,255,255,.45)",lineHeight:1.77 }}>{desc}</p>
+      <p style={{
+        fontFamily: "'Barlow', sans-serif",
+        fontSize: 13, color: "rgba(106,139,168,.75)", lineHeight: 1.77,
+      }}>{desc}</p>
     </div>
   );
 }

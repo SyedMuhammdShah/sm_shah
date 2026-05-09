@@ -4,8 +4,8 @@ import { HERO } from "../data";
 const NAV_LINKS = ["home", "about", "skills", "projects", "experience", "contact"];
 
 export default function Navbar() {
-  const [scrolled, setScrolled]   = useState(false);
-  const [active,   setActive]     = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const [active,   setActive]   = useState("home");
 
   useEffect(() => {
     const onScroll = () => {
@@ -30,9 +30,10 @@ export default function Navbar() {
         position: "fixed", top: 0, left: 0, right: 0,
         zIndex: 999,
         transition: "all .35s",
-        background: scrolled ? "rgba(6,9,18,.97)" : "transparent",
+        background: scrolled ? "rgba(8,15,24,.97)" : "transparent",
         backdropFilter: scrolled ? "blur(28px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,.06)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(28px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(238,242,247,.06)" : "none",
       }}
     >
       <div style={{
@@ -45,44 +46,47 @@ export default function Navbar() {
         <div
           onClick={() => goto("home")}
           style={{
-            fontFamily: "'Syne', sans-serif",
-            fontSize: 26, fontWeight: 800,
-            letterSpacing: -1, cursor: "pointer",
-            background: "linear-gradient(135deg,#00e5a0,#7c6fff)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
+            fontFamily: "'Barlow Condensed', sans-serif",
+            fontSize: 28, fontWeight: 900,
+            letterSpacing: 1, cursor: "pointer",
+            textTransform: "uppercase",
+            color: "#e8604a",
+            textShadow: "0 0 28px rgba(232,96,74,.4)",
           }}
         >
           SMS.
         </div>
 
         {/* Links */}
-        <div style={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <div className="nb" style={{ display: "flex", alignItems: "center", gap: 2 }}>
           {NAV_LINKS.map((id) => (
             <button
               key={id}
               onClick={() => goto(id)}
               style={{
                 background: "none", border: "none",
-                color: active === id ? "#00e5a0" : "rgba(255,255,255,.45)",
-                fontSize: 13,
-                fontWeight: active === id ? 600 : 500,
+                color: active === id ? "#e8604a" : "rgba(238,242,247,.4)",
+                fontSize: 12,
+                fontWeight: active === id ? 700 : 500,
                 cursor: "pointer",
                 padding: "7px 14px", borderRadius: 8,
                 transition: "all .2s",
-                fontFamily: "inherit",
+                fontFamily: "'Barlow', sans-serif",
                 position: "relative",
-                textTransform: "capitalize",
+                textTransform: "uppercase",
+                letterSpacing: ".08em",
               }}
             >
               {id}
               {active === id && (
                 <span style={{
-                  position: "absolute", bottom: 5,
+                  position: "absolute", bottom: 4,
                   left: "50%", transform: "translateX(-50%)",
-                  width: 14, height: 1.5,
-                  background: "#00e5a0", borderRadius: 2,
+                  width: 14, height: 2,
+                  background: "#e8604a",
+                  borderRadius: 2,
                   display: "block",
+                  boxShadow: "0 0 8px rgba(232,96,74,.6)",
                 }} />
               )}
             </button>
@@ -92,18 +96,21 @@ export default function Navbar() {
             href={HERO.links.email}
             style={{
               padding: "9px 22px", borderRadius: 9,
-              background: "linear-gradient(135deg,#00e5a0,#00c87a)",
-              color: "#000", fontWeight: 700, fontSize: 13,
+              background: "linear-gradient(135deg,#e8604a,#c94a36)",
+              color: "#fff", fontWeight: 700, fontSize: 13,
+              fontFamily: "'Barlow', sans-serif",
               marginLeft: 12, textDecoration: "none",
               transition: "all .25s", display: "inline-block",
+              boxShadow: "0 4px 18px rgba(232,96,74,.3)",
+              textTransform: "uppercase", letterSpacing: ".06em",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-1px)";
-              e.currentTarget.style.boxShadow = "0 8px 28px rgba(0,229,160,.4)";
+              e.currentTarget.style.boxShadow = "0 8px 28px rgba(232,96,74,.5)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "";
-              e.currentTarget.style.boxShadow = "";
+              e.currentTarget.style.boxShadow = "0 4px 18px rgba(232,96,74,.3)";
             }}
           >
             Hire Me

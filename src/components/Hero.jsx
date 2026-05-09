@@ -1,326 +1,550 @@
 import { useTyping } from "../hooks/useTyping";
 import { HERO } from "../data";
-import epic1   from "../images/epicRides/pic1.png";
-import epic2   from "../images/epicRides/pic2.png";
+import epic1 from "../images/epicRides/pic1.png";
 import hadafi1 from "../images/hadafi/Phone SS 1.jpg";
-import hadafi2 from "../images/hadafi/Phone SS 3.jpg";
+import rightAway1 from "../images/rideAway/0x0ss.png";
+
+const C = {
+  coral: "#e8604a",
+  coral2: "#f07b66",
+  coral3: "#c94a36",
+  navy: "#080f18",
+  navy2: "#0d1b2a",
+  navy3: "#152335",
+  navy4: "#1c3050",
+  gold: "#d4a847",
+  muted: "#6a8ba8",
+  white: "#eef2f7",
+};
 
 export default function Hero() {
   const typed = useTyping(HERO.roles);
-  const goto  = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const goto = (id) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <section
       id="home"
       style={{
-        minHeight: "100vh", display: "flex",
-        alignItems: "center", position: "relative", overflow: "hidden",
+        minHeight: "100svh",
+        display: "flex",
+        alignItems: "center",
+        position: "relative",
+        overflow: "hidden",
+        background: `
+          radial-gradient(circle at 12% 16%, rgba(232,96,74,.16), transparent 28%),
+          radial-gradient(circle at 78% 18%, rgba(212,168,71,.1), transparent 26%),
+          linear-gradient(180deg, ${C.navy} 0%, ${C.navy2} 56%, ${C.navy} 100%)
+        `,
       }}
     >
-      {/* Ambient glow orbs */}
-      <div style={{ position:"absolute",width:900,height:900,borderRadius:"50%",top:"-25%",left:"38%",transform:"translateX(-50%)",background:"radial-gradient(circle,rgba(0,229,160,.05),transparent 60%)",pointerEvents:"none",filter:"blur(90px)" }} />
-      <div style={{ position:"absolute",width:520,height:520,borderRadius:"50%",top:"10%",right:"-4%",background:"radial-gradient(circle,rgba(124,111,255,.09),transparent 65%)",pointerEvents:"none",filter:"blur(80px)" }} />
-      <div style={{ position:"absolute",width:340,height:340,borderRadius:"50%",bottom:"8%",left:"2%",background:"radial-gradient(circle,rgba(0,100,255,.06),transparent 65%)",pointerEvents:"none",filter:"blur(70px)" }} />
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(90deg, rgba(238,242,247,.035) 1px, transparent 1px), linear-gradient(rgba(238,242,247,.03) 1px, transparent 1px)",
+          backgroundSize: "76px 76px",
+          maskImage:
+            "linear-gradient(180deg, transparent 0%, #000 16%, #000 76%, transparent 100%)",
+        }}
+      />
 
-      {/* Two-column layout */}
       <div
         className="hero-grid"
         style={{
-          position: "relative", zIndex: 2, width: "100%",
-          maxWidth: 1160, margin: "0 auto",
-          padding: "88px 40px 64px",
+          position: "relative",
+          zIndex: 2,
+          width: "100%",
+          maxWidth: 1280,
+          margin: "0 auto",
+          padding: "92px 48px 38px",
           display: "grid",
-          gridTemplateColumns: "1fr 420px",
-          gap: 60,
+          gridTemplateColumns: "minmax(420px, .9fr) minmax(480px, 1.1fr)",
+          gap: 42,
           alignItems: "center",
         }}
       >
-        {/* ── LEFT: text with staggered entrance ── */}
-        <div>
-          {/* Badge */}
+        <div style={{ maxWidth: 620 }}>
           <div
             style={{
-              display: "inline-flex", alignItems: "center", gap: 9,
-              padding: "7px 16px", borderRadius: 24,
-              background: "rgba(0,229,160,.07)",
-              border: "1px solid rgba(0,229,160,.16)",
-              marginBottom: 26,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              padding: "8px 16px",
+              borderRadius: 999,
+              background: "rgba(232,96,74,.1)",
+              border: "1px solid rgba(232,96,74,.25)",
+              color: C.coral2,
+              fontFamily: "'Space Mono', monospace",
+              fontSize: 11,
+              fontWeight: 700,
+              marginBottom: 24,
               animation: "slideUp .7s cubic-bezier(.16,1,.3,1) .1s both",
             }}
           >
-            <span style={{
-              width: 8, height: 8, borderRadius: "50%",
-              background: "#00e5a0", boxShadow: "0 0 10px #00e5a0",
-              display: "inline-block", animation: "pulse 2.2s infinite",
-            }} />
-            <span style={{ fontSize: 12, color: "#00e5a0", fontWeight: 500 }}>{HERO.availability}</span>
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: C.coral,
+                boxShadow: `0 0 12px ${C.coral}`,
+                display: "inline-block",
+                animation: "pulse 2.2s infinite",
+              }}
+            />
+            {HERO.availability}
           </div>
 
-          {/* Name */}
           <h1
             style={{
-              fontFamily: "'Syne', sans-serif",
-              fontSize: "clamp(38px,5.5vw,76px)",
-              fontWeight: 800, lineHeight: 0.92,
-              letterSpacing: -3, marginBottom: 18, color: "#fff",
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontSize: "clamp(54px, 6.2vw, 86px)",
+              fontWeight: 900,
+              lineHeight: 0.9,
+              color: C.white,
+              textTransform: "uppercase",
+              marginBottom: 18,
               animation: "slideUp .75s cubic-bezier(.16,1,.3,1) .22s both",
             }}
           >
             {HERO.name.split("\n").map((line, i) => (
-              <span key={i} style={i === 1 ? {
-                display: "block",
-                background: "linear-gradient(120deg,#00e5a0 0%,#7c6fff 55%,#ff8c42 100%)",
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-              } : { display: "block" }}>
+              <span
+                key={line}
+                style={{
+                  display: "block",
+                  color: i === 0 ? C.white : C.coral2,
+                  textShadow:
+                    i === 0 ? "none" : "0 16px 46px rgba(232,96,74,.22)",
+                }}
+              >
                 {line}
               </span>
             ))}
           </h1>
 
-          {/* Typed */}
           <div
             style={{
-              fontSize: "clamp(14px,1.8vw,20px)", fontWeight: 500,
-              color: "rgba(255,255,255,.6)", marginBottom: 18, minHeight: "1.5em",
+              fontFamily: "'Barlow', sans-serif",
+              fontSize: "clamp(17px, 1.5vw, 21px)",
+              fontWeight: 700,
+              color: C.gold,
+              minHeight: "1.45em",
+              marginBottom: 18,
               animation: "slideUp .7s cubic-bezier(.16,1,.3,1) .38s both",
             }}
           >
-            <span style={{
-              background: "linear-gradient(135deg,#00e5a0,#7c6fff)",
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", fontWeight: 700,
-            }}>{typed}</span>
-            <span style={{ color: "#00e5a0", animation: "blink 1s step-end infinite", fontWeight: 300 }}>|</span>
+            {typed}
+            <span
+              style={{
+                color: C.coral,
+                animation: "blink 1s step-end infinite",
+                fontWeight: 400,
+              }}
+            >
+              |
+            </span>
           </div>
 
-          {/* Description */}
           <p
             style={{
-              fontSize: "clamp(13px,1.1vw,15px)", color: "rgba(255,255,255,.57)",
-              maxWidth: 500, lineHeight: 1.9, marginBottom: 34,
+              fontFamily: "'Barlow', sans-serif",
+              fontSize: "clamp(15px, 1.12vw, 17px)",
+              color: "rgba(238,242,247,.65)",
+              maxWidth: 560,
+              lineHeight: 1.68,
+              marginBottom: 28,
               animation: "slideUp .7s cubic-bezier(.16,1,.3,1) .5s both",
             }}
           >
             {HERO.description}
           </p>
 
-          {/* Buttons */}
           <div
             style={{
-              display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 48,
+              display: "flex",
+              gap: 10,
+              flexWrap: "wrap",
+              marginBottom: 28,
               animation: "slideUp .7s cubic-bezier(.16,1,.3,1) .62s both",
             }}
           >
-            <button onClick={() => goto("projects")} className="btn-green" style={{ padding: "13px 26px", fontSize: 14 }}>
-              View Projects →
+            <button
+              onClick={() => goto("projects")}
+              className="btn-green"
+              style={{ padding: "13px 26px", fontSize: 15 }}
+            >
+              View Projects
             </button>
-            <a href={HERO.links.email}    className="btn-outline" style={{ padding: "13px 26px", fontSize: 14 }}>Get In Touch</a>
-            <a href={HERO.links.linkedin} target="_blank" rel="noreferrer" className="btn-blue" style={{ padding: "13px 26px", fontSize: 14 }}>LinkedIn ↗</a>
-            <a href={HERO.links.github}   target="_blank" rel="noreferrer" className="btn-dim"  style={{ padding: "13px 26px", fontSize: 14 }}>GitHub ↗</a>
+            <a
+              href={HERO.links.email}
+              className="btn-outline"
+              style={{ padding: "13px 26px", fontSize: 15 }}
+            >
+              Get In Touch
+            </a>
+            <a
+              href={HERO.links.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-blue"
+              style={{ padding: "13px 24px", fontSize: 15 }}
+            >
+              LinkedIn
+            </a>
+            <a
+              href={HERO.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-dim"
+              style={{ padding: "13px 24px", fontSize: 15 }}
+            >
+              GitHub
+            </a>
           </div>
 
-          {/* Stats */}
           <div
+            className="hero-stats"
             style={{
-              display: "flex", flexWrap: "wrap",
-              borderTop: "1px solid rgba(255,255,255,.07)", paddingTop: 30,
+              display: "grid",
+              gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+              gap: 10,
               animation: "slideUp .7s cubic-bezier(.16,1,.3,1) .76s both",
             }}
           >
-            {HERO.stats.map((s, i) => (
-              <div key={i} style={{
-                paddingRight: i < HERO.stats.length - 1 ? 32 : 0,
-                marginRight:  i < HERO.stats.length - 1 ? 32 : 0,
-                borderRight:  i < HERO.stats.length - 1 ? "1px solid rgba(255,255,255,.07)" : "none",
-              }}>
-                <div style={{
-                  fontFamily: "'Syne', sans-serif",
-                  fontSize: "clamp(22px,2.5vw,34px)", fontWeight: 800,
-                  background: "linear-gradient(135deg,#00e5a0,#7c6fff)",
-                  WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-                }}>{s.number}</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,.35)", marginTop: 3, fontWeight: 500 }}>{s.label}</div>
+            {HERO.stats.map((s) => (
+              <div
+                key={s.label}
+                style={{
+                  minHeight: 72,
+                  padding: "13px 14px",
+                  borderRadius: 14,
+                  background: "rgba(13,27,42,.68)",
+                  border: "1px solid rgba(238,242,247,.08)",
+                  boxShadow: "0 14px 38px rgba(0,0,0,.18)",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontSize: 31,
+                    fontWeight: 900,
+                    color: C.coral2,
+                    lineHeight: 0.9,
+                  }}
+                >
+                  {s.number}
+                </div>
+                <div
+                  style={{
+                    fontFamily: "'Space Mono', monospace",
+                    fontSize: 9,
+                    color: C.muted,
+                    lineHeight: 1.25,
+                    marginTop: 8,
+                  }}
+                >
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* ── RIGHT: floating phone collage ── */}
         <div className="hero-visual">
-          <PhoneCollage />
+          <ProjectSpotlight />
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div style={{
-        position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)",
-        display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-        opacity: 0.28, zIndex: 2,
-        animation: "slideUp .6s ease 1.1s both",
-      }}>
-        <div style={{
-          width: 24, height: 38, border: "1.5px solid rgba(255,255,255,.35)",
-          borderRadius: 13, display: "flex", justifyContent: "center", paddingTop: 6,
-        }}>
-          <div style={{ width: 3, height: 8, background: "#00e5a0", borderRadius: 2, animation: "scrollanim 1.8s ease-in-out infinite" }} />
-        </div>
-        <span style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase" }}>Scroll</span>
       </div>
     </section>
   );
 }
 
-/* ─────────────────────────────────────────────────────────
-   4-phone staggered collage with floating animations
-   Layout:
-     [epic1 –14°]  [stats card]  [hadafi1 +14°]
-     [epic2  –5°]               [hadafi2  +5°]
-───────────────────────────────────────────────────────── */
-function PhoneCollage() {
+function ProjectSpotlight() {
   return (
-    <div style={{
-      position: "relative", width: "100%", height: 400,
-      display: "flex", alignItems: "center", justifyContent: "center",
-    }}>
-
-      {/* Radial glow background */}
-      <div style={{
-        position: "absolute", width: 300, height: 300, borderRadius: "50%",
-        background: "radial-gradient(circle,rgba(124,111,255,.12),transparent 65%)",
-        filter: "blur(48px)", pointerEvents: "none",
-      }} />
-
-      {/* ── Epic Rides — back left ──
-          Wrapper: entrance (slideUp, opacity only)
-          Inner:   float-bl (rotation + translateY loop) */}
-      <div style={{
-        position: "absolute", left: 0, top: 12, zIndex: 2,
-        animation: "slideUp .85s cubic-bezier(.16,1,.3,1) .35s both",
-      }}>
-        <div style={{ opacity: 0.6, animation: "float-bl 4.4s ease-in-out 1.3s infinite" }}>
-          <PhoneShot img={epic1} width={80} height={162} />
-        </div>
-      </div>
-
-      {/* ── Epic Rides — front left ── */}
-      <div style={{
-        position: "absolute", left: 36, bottom: 10, zIndex: 3,
-        animation: "slideUp .85s cubic-bezier(.16,1,.3,1) .5s both",
-      }}>
-        <div style={{ opacity: 0.88, animation: "float-fl 3.8s ease-in-out 1.5s infinite" }}>
-          <PhoneShot img={epic2} width={90} height={182} />
-        </div>
-      </div>
-
-      {/* ── Center glass card (stats + label) ── */}
-      <div style={{
-        position: "relative", zIndex: 5, flexShrink: 0,
-        animation: "slideUp .8s cubic-bezier(.16,1,.3,1) .45s both",
-      }}>
-        <div style={{ animation: "float-c 5s ease-in-out 1.6s infinite" }}>
-          <div style={{
-            background: "rgba(8,8,20,.80)",
-            backdropFilter: "blur(22px)",
-            WebkitBackdropFilter: "blur(22px)",
-            border: "1px solid rgba(255,255,255,.10)",
-            borderRadius: 20,
-            padding: "20px 24px",
-            textAlign: "center",
-            boxShadow: "0 18px 60px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.04)",
-            animation: "glowPulse 4s ease-in-out infinite",
-            minWidth: 110,
-          }}>
-            <div style={{
-              fontFamily: "'Syne',sans-serif", fontSize: 30, fontWeight: 800,
-              background: "linear-gradient(135deg,#00e5a0,#7c6fff)",
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-              lineHeight: 1,
-            }}>100K+</div>
-            <div style={{ fontSize: 9, color: "rgba(255,255,255,.32)", marginTop: 4, letterSpacing: ".1em", textTransform: "uppercase" }}>Downloads</div>
-            <div style={{ width: 28, height: 1, background: "linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)", margin: "12px auto" }} />
-            <div style={{
-              fontFamily: "'Syne',sans-serif", fontSize: 24, fontWeight: 800,
-              background: "linear-gradient(135deg,#7c6fff,#ff8c42)",
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-              lineHeight: 1,
-            }}>7+</div>
-            <div style={{ fontSize: 9, color: "rgba(255,255,255,.32)", marginTop: 4, letterSpacing: ".1em", textTransform: "uppercase" }}>Apps Shipped</div>
+    <div
+      className="phone-collage"
+      style={{
+        position: "relative",
+        width: "100%",
+        maxWidth: 640,
+        margin: "0 auto",
+        height: 510,
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: "34px 14px 30px",
+          borderRadius: 34,
+          background:
+            "linear-gradient(145deg, rgba(21,35,53,.86), rgba(8,15,24,.84))",
+          border: "1px solid rgba(238,242,247,.09)",
+          boxShadow: "0 34px 100px rgba(0,0,0,.36)",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(circle at 66% 28%, rgba(232,96,74,.22), transparent 34%), radial-gradient(circle at 28% 74%, rgba(212,168,71,.12), transparent 34%)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: 26,
+            left: 28,
+            right: 28,
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 16,
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <div
+              style={{
+                fontFamily: "'Space Mono', monospace",
+                fontSize: 10,
+                color: C.coral2,
+                letterSpacing: ".18em",
+                textTransform: "uppercase",
+                marginBottom: 5,
+              }}
+            >
+              Featured Build
+            </div>
+            <div
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontSize: 34,
+                fontWeight: 900,
+                color: C.white,
+                lineHeight: 0.92,
+                textTransform: "uppercase",
+              }}
+            >
+              Apps
+            </div>
+          </div>
+          <div
+            style={{
+              borderRadius: 999,
+              padding: "8px 12px",
+              background: "rgba(232,96,74,.12)",
+              border: "1px solid rgba(232,96,74,.28)",
+              color: C.coral2,
+              fontFamily: "'Space Mono', monospace",
+              fontSize: 10,
+              fontWeight: 700,
+            }}
+          >
+            Logistics
           </div>
         </div>
       </div>
 
-      {/* ── Hadafi — back right ── */}
-      <div style={{
-        position: "absolute", right: 0, top: 12, zIndex: 2,
-        animation: "slideUp .85s cubic-bezier(.16,1,.3,1) .35s both",
-      }}>
-        <div style={{ opacity: 0.6, animation: "float-br 4.2s ease-in-out 1.35s infinite" }}>
-          <PhoneShot img={hadafi1} width={80} height={162} />
+      <MiniPreview
+        img={hadafi1}
+        title="Hadafi"
+        subtitle="Sports-tech"
+        style={{
+          left: 0,
+          top: 140,
+          transform: "rotate(-5deg)",
+        }}
+      />
+
+      <MiniPreview
+        img={epic1}
+        title="Epic Rides"
+        subtitle="Ride-sharing"
+        style={{
+          right: 0,
+          top: 166,
+          transform: "rotate(5deg)",
+        }}
+      />
+
+      <div
+        className="hero-main-preview"
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: 74,
+          transform: "translateX(-50%)",
+          zIndex: 5,
+          width: 250,
+        }}
+      >
+        <div
+          style={{
+            padding: 3,
+            borderRadius: 30,
+            background: `linear-gradient(150deg, ${C.coral}, ${C.gold}, ${C.navy4})`,
+            boxShadow:
+              "0 32px 86px rgba(0,0,0,.54), 0 0 70px rgba(232,96,74,.18)",
+          }}
+        >
+          <div
+            className="hero-main-shot"
+            style={{
+              height: 392,
+              borderRadius: 27,
+              overflow: "hidden",
+              background: C.navy,
+              border: "1px solid rgba(238,242,247,.1)",
+            }}
+          >
+            <img
+              src={rightAway1}
+              alt="Right Away app preview"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "top",
+                display: "block",
+              }}
+            />
+          </div>
         </div>
       </div>
 
-      {/* ── Hadafi — front right ── */}
-      <div style={{
-        position: "absolute", right: 36, bottom: 10, zIndex: 3,
-        animation: "slideUp .85s cubic-bezier(.16,1,.3,1) .5s both",
-      }}>
-        <div style={{ opacity: 0.88, animation: "float-fr 3.6s ease-in-out 1.55s infinite" }}>
-          <PhoneShot img={hadafi2} width={90} height={182} />
-        </div>
+      <div
+        className="hero-project-strip"
+        style={{
+          position: "absolute",
+          left: 54,
+          right: 54,
+          bottom: 20,
+          zIndex: 7,
+          display: "grid",
+          gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+          gap: 10,
+        }}
+      >
+        {[
+          ["Hadafi", "Sports-tech · UAE"],
+          ["Right Away", "Construction delivery"],
+          ["Epic Rides", "Ride-sharing · US"],
+        ].map(([title, label]) => (
+          <div
+            key={title}
+            style={{
+              borderRadius: 14,
+              padding: "11px 12px",
+              background: "rgba(8,15,24,.9)",
+              border: "1px solid rgba(238,242,247,.1)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              boxShadow: "0 16px 34px rgba(0,0,0,.28)",
+            }}
+          >
+            <div
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontSize: 18,
+                fontWeight: 800,
+                color: C.coral2,
+                lineHeight: 1,
+                textTransform: "uppercase",
+              }}
+            >
+              {title}
+            </div>
+            <div
+              style={{
+                fontFamily: "'Barlow', sans-serif",
+                fontSize: 11,
+                color: C.muted,
+                lineHeight: 1.25,
+                marginTop: 5,
+              }}
+            >
+              {label}
+            </div>
+          </div>
+        ))}
       </div>
-
-      {/* ── Floating app badges ── */}
-      <div style={{
-        position: "absolute", left: 4, bottom: 52, zIndex: 6,
-        background: "rgba(124,111,255,.10)",
-        backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
-        border: "1px solid rgba(124,111,255,.26)",
-        borderRadius: 10, padding: "5px 10px",
-        fontSize: 9, fontWeight: 700, color: "#a899ff",
-        letterSpacing: ".08em",
-        animation: "slideUp .7s cubic-bezier(.16,1,.3,1) .8s both",
-      }}>
-        🚗 EPIC RIDES &nbsp;·&nbsp; US
-      </div>
-
-      <div style={{
-        position: "absolute", right: 4, bottom: 52, zIndex: 6,
-        background: "rgba(255,140,66,.10)",
-        backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
-        border: "1px solid rgba(255,140,66,.26)",
-        borderRadius: 10, padding: "5px 10px",
-        fontSize: 9, fontWeight: 700, color: "#ffaa66",
-        letterSpacing: ".08em",
-        animation: "slideUp .7s cubic-bezier(.16,1,.3,1) .8s both",
-      }}>
-        ⚽ HADAFI &nbsp;·&nbsp; UAE
-      </div>
-
     </div>
   );
 }
 
-/* Minimal phone frame */
-function PhoneShot({ img, width, height }) {
+function MiniPreview({ img, title, subtitle, style }) {
   return (
-    <div style={{
-      width, height,
-      borderRadius: 18,
-      overflow: "hidden",
-      border: "1.5px solid rgba(255,255,255,.12)",
-      boxShadow: "0 18px 52px rgba(0,0,0,.72)",
-      background: "#060606",
-    }}>
-      {/* Notch */}
-      <div style={{
-        height: 7, background: "#060606",
-        display: "flex", justifyContent: "center", alignItems: "center",
-      }}>
-        <div style={{ width: 26, height: 4, borderRadius: 10, background: "#1c1c1e" }} />
+    <div
+      className="hero-mini-preview"
+      style={{
+        position: "absolute",
+        zIndex: 3,
+        width: 154,
+        ...style,
+      }}
+    >
+      <div
+        style={{
+          height: 264,
+          borderRadius: 23,
+          overflow: "hidden",
+          border: "1px solid rgba(238,242,247,.12)",
+          background: C.navy3,
+          boxShadow: "0 24px 58px rgba(0,0,0,.42)",
+          opacity: 0.82,
+        }}
+      >
+        <img
+          src={img}
+          alt={`${title} app preview`}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "top",
+            display: "block",
+          }}
+        />
       </div>
-      <img
-        src={img} alt=""
-        style={{ width: "100%", height: `calc(100% - 7px)`, objectFit: "cover", objectPosition: "top", display: "block" }}
-      />
+      <div
+        style={{
+          width: "max-content",
+          maxWidth: "100%",
+          margin: "10px auto 0",
+          padding: "7px 11px",
+          borderRadius: 12,
+          background: "rgba(13,27,42,.88)",
+          border: "1px solid rgba(238,242,247,.1)",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "'Barlow Condensed', sans-serif",
+            fontSize: 15,
+            fontWeight: 800,
+            color: C.white,
+            lineHeight: 1,
+            textTransform: "uppercase",
+          }}
+        >
+          {title}
+        </div>
+        <div
+          style={{
+            fontFamily: "'Space Mono', monospace",
+            fontSize: 8,
+            color: C.muted,
+            marginTop: 4,
+          }}
+        >
+          {subtitle}
+        </div>
+      </div>
     </div>
   );
 }

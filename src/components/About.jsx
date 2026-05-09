@@ -12,9 +12,9 @@ export default function About() {
   const [rightRef, rightVis] = useReveal();
 
   return (
-    <section id="about" style={{ padding: "90px 0", position: "relative", zIndex: 1 }}>
+    <section id="about" style={{ padding: "54px 0 100px", position: "relative", zIndex: 1 }}>
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 40px" }}>
-        <div style={{
+        <div className="about-grid" style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: 80, alignItems: "center",
@@ -22,29 +22,34 @@ export default function About() {
           {/* Left */}
           <div ref={leftRef} style={revealStyle(leftVis, "left")}>
             <div style={{
-              display: "inline-block", padding: "5px 14px",
-              borderRadius: 20, background: "rgba(0,229,160,.07)",
-              border: "1px solid rgba(0,229,160,.15)",
-              fontSize: 11, color: "#00e5a0", fontWeight: 700,
-              letterSpacing: ".1em", textTransform: "uppercase",
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "5px 14px", borderRadius: 20,
+              background: "rgba(232,96,74,.09)",
+              border: "1px solid rgba(232,96,74,.22)",
+              fontSize: 11, color: "#f07b66", fontWeight: 700,
+              letterSpacing: ".14em", textTransform: "uppercase",
+              fontFamily: "'Space Mono', monospace",
               marginBottom: 20,
             }}>
               About Me
             </div>
 
             <h2 style={{
-              fontFamily: "'Syne', sans-serif",
-              fontSize: "clamp(28px,4vw,52px)",
-              fontWeight: 800, letterSpacing: -1.5,
-              lineHeight: 1.05, marginBottom: 20,
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontSize: "clamp(32px, 4vw, 56px)",
+              fontWeight: 900, letterSpacing: 0,
+              lineHeight: 1.0, marginBottom: 22,
+              textTransform: "uppercase",
+              color: "#eef2f7",
             }}>
               Full-stack mobile<br />ownership.
             </h2>
 
             {ABOUT.paragraphs.map((p, i) => (
               <p key={i} style={{
-                color: "rgba(255,255,255,.6)",
-                lineHeight: 1.88, fontSize: 15, marginBottom: 14,
+                fontFamily: "'Barlow', sans-serif",
+                color: "rgba(238,242,247,.62)",
+                lineHeight: 1.82, fontSize: 15.5, marginBottom: 14,
               }}>
                 {p}
               </p>
@@ -85,15 +90,23 @@ export default function About() {
                 key={i}
                 className="acard"
                 style={{
-                  padding: "24px 20px", borderRadius: 18,
-                  background: "rgba(255,255,255,.025)",
-                  border: "1px solid rgba(255,255,255,.07)",
+                  padding: "26px 22px", borderRadius: 18,
+                  background: "rgba(13,27,42,.8)",
+                  border: "1px solid rgba(238,242,247,.07)",
                   transition: "all .3s",
                 }}
               >
                 <div style={{ fontSize: 28, marginBottom: 12 }}>{c.icon}</div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#fff", marginBottom: 7 }}>{c.title}</div>
-                <div style={{ fontSize: 12, color: "rgba(255,255,255,.38)", lineHeight: 1.7 }}>{c.desc}</div>
+                <div style={{
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontSize: 16, fontWeight: 700,
+                  color: "#eef2f7", marginBottom: 7,
+                  textTransform: "uppercase", letterSpacing: .3,
+                }}>{c.title}</div>
+                <div style={{
+                  fontFamily: "'Barlow', sans-serif",
+                  fontSize: 13, color: "rgba(106,139,168,.8)", lineHeight: 1.7,
+                }}>{c.desc}</div>
               </div>
             ))}
           </div>
