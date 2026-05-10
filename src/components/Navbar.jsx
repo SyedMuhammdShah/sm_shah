@@ -6,6 +6,7 @@ const NAV_LINKS = ["home", "about", "skills", "projects", "experience", "contact
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active,   setActive]   = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -21,11 +22,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const goto = (id) =>
+  const goto = (id) => {
+    setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <nav
+      className="site-nav"
       style={{
         position: "fixed", top: 0, left: 0, right: 0,
         zIndex: 999,
@@ -36,7 +40,7 @@ export default function Navbar() {
         borderBottom: scrolled ? "1px solid rgba(238,242,247,.06)" : "none",
       }}
     >
-      <div style={{
+      <div className="nav-inner" style={{
         maxWidth: 1280, margin: "0 auto",
         padding: "0 48px", display: "flex",
         alignItems: "center", justifyContent: "space-between",
@@ -57,11 +61,29 @@ export default function Navbar() {
           SMS.
         </div>
 
+        <button
+          type="button"
+          className={`nav-menu-toggle ${menuOpen ? "is-open" : ""}`}
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
         {/* Links */}
-        <div className="nb" style={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <div
+          id="primary-navigation"
+          className={`nb nav-links ${menuOpen ? "is-open" : ""}`}
+          style={{ display: "flex", alignItems: "center", gap: 2 }}
+        >
           {NAV_LINKS.map((id) => (
             <button
               key={id}
+              className="nav-link"
               onClick={() => goto(id)}
               style={{
                 background: "none", border: "none",
@@ -94,6 +116,8 @@ export default function Navbar() {
 
           <a
             href={HERO.links.email}
+            className="nav-cta"
+            onClick={() => setMenuOpen(false)}
             style={{
               padding: "9px 22px", borderRadius: 9,
               background: "linear-gradient(135deg,#e8604a,#c94a36)",

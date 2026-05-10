@@ -206,7 +206,7 @@ export default function About() {
             </div>
 
             {/* ── Feature cards 2×2 ── */}
-            <div style={{
+            <div className="about-card-grid" style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               gap: 12,

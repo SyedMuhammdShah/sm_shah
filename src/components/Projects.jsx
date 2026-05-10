@@ -36,7 +36,7 @@ export default function Projects() {
         </div>
 
         {/* Grid */}
-        <div style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:22 }}>
+        <div className="proj-grid" style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:22 }}>
           {PROJECTS.map((p, i) => (
             <ProjectCard key={p.id} project={p} delay={i * 0.06} onClick={() => setSelected(p)} />
           ))}
@@ -90,6 +90,7 @@ function ProjectCard({ project, delay, onClick }) {
   return (
     <div
       ref={ref}
+      className="project-card"
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -109,7 +110,7 @@ function ProjectCard({ project, delay, onClick }) {
       }}
     >
       {/* Preview */}
-      <div style={{
+      <div className="project-card-preview" style={{
         height: 250, position: "relative", overflow: "hidden",
         display: "flex", alignItems: "flex-end",
         justifyContent: "center", padding: "28px 14px 0",
@@ -141,7 +142,7 @@ function ProjectCard({ project, delay, onClick }) {
       </div>
 
       {/* Body */}
-      <div style={{ padding:"22px 24px 26px",flex:1,display:"flex",flexDirection:"column" }}>
+      <div className="project-card-body" style={{ padding:"22px 24px 26px",flex:1,display:"flex",flexDirection:"column" }}>
         <div style={{ display:"flex",gap:5,flexWrap:"wrap",marginBottom:12 }}>
           {tags.map((t) => (
             <span key={t} style={{
@@ -166,8 +167,8 @@ function ProjectCard({ project, delay, onClick }) {
             }}>{t}</span>
           ))}
         </div>
-        <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
-          <div style={{ display:"flex",gap:6 }}>
+        <div className="project-card-actions" style={{ display:"flex",alignItems:"center",justifyContent:"space-between" }}>
+          <div className="project-card-store-links" style={{ display:"flex",gap:6 }}>
             {linksHTML.map(({ href, label, type }) => (
               <a
                 key={label} href={href} target="_blank" rel="noreferrer"
@@ -183,7 +184,7 @@ function ProjectCard({ project, delay, onClick }) {
               </a>
             ))}
           </div>
-          <div style={{
+          <div className="project-card-details" style={{
             fontSize:11,fontWeight:700,color,
             opacity: hovered ? 1 : 0,
             transition: "opacity .3s",
@@ -213,7 +214,7 @@ function PhoneMock({ img, alt, main, side, hovered }) {
     : "translateY(-8px)";
 
   return (
-    <div style={{
+    <div className={main ? "project-phone project-phone-main" : "project-phone project-phone-side"} style={{
       borderRadius: "16px 16px 0 0", overflow: "hidden",
       flexShrink: 0,
       boxShadow: "0 16px 48px rgba(0,0,0,.7)",
