@@ -3,9 +3,11 @@ import { StoreIcon } from "./StoreIcons";
 
 export default function ProjectModal({ project, onClose }) {
   const [activeThumb, setActiveThumb] = useState(0);
+  const [imageOpen, setImageOpen] = useState(false);
 
   useEffect(() => {
     setActiveThumb(0);
+    setImageOpen(false);
     if (project) document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
@@ -86,7 +88,12 @@ export default function ProjectModal({ project, onClose }) {
               <ProjectSection title="Screenshots">
                 <div className="project-screen-viewer">
                   <div className="project-screen-main">
-                    <img src={activeScreen.img} alt={activeScreen.label} />
+                    <img
+                      src={activeScreen.img}
+                      alt={activeScreen.label}
+                      onClick={() => setImageOpen(true)}
+                      style={{ cursor: "zoom-in" }}
+                    />
                   </div>
                   <div className="project-screen-label">{activeScreen.label}</div>
                 </div>
@@ -97,10 +104,13 @@ export default function ProjectModal({ project, onClose }) {
                       key={screen.label}
                       type="button"
                       className={index === activeThumb ? "active" : ""}
-                      onClick={() => setActiveThumb(index)}
+                      onClick={() => {
+                        setActiveThumb(index);
+                        setImageOpen(true);
+                      }}
                       aria-label={`Show ${screen.label}`}
                     >
-                      <img src={screen.img} alt="" />
+                      <img src={screen.img} alt={screen.label} />
                     </button>
                   ))}
                 </div>
@@ -136,6 +146,23 @@ export default function ProjectModal({ project, onClose }) {
             </ProjectSection>
           </aside>
         </div>
+
+        {imageOpen && activeScreen && (
+          <div className="image-viewer-backdrop" onClick={() => setImageOpen(false)}>
+            <div className="image-viewer-shell" onClick={(event) => event.stopPropagation()}>
+              <button
+                type="button"
+                className="image-viewer-close"
+                onClick={() => setImageOpen(false)}
+                aria-label="Close image viewer"
+              >
+                ×
+              </button>
+              <img src={activeScreen.img} alt={activeScreen.label} />
+              <div className="image-viewer-caption">{activeScreen.label}</div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

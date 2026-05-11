@@ -8,6 +8,8 @@ export default function Projects() {
   const [hdrRef, hdrVis] = useReveal();
   const [selected, setSelected] = useState(null);
 
+  const screenshotItems = PROJECTS.flatMap((project) => project.screens ?? []).filter(Boolean);
+
   return (
     <section id="projects" style={{ padding: "90px 0", position: "relative", zIndex: 1 }}>
       <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 40px" }}>
@@ -35,6 +37,9 @@ export default function Projects() {
           </p>
         </div>
 
+        {/* Screenshot marquee */}
+        <ScreenshotsMarquee items={screenshotItems} />
+
         {/* Grid */}
         <div className="proj-grid" style={{ display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:22 }}>
           {PROJECTS.map((p, i) => (
@@ -45,6 +50,27 @@ export default function Projects() {
 
       <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
+  );
+}
+
+function ScreenshotsMarquee({ items }) {
+  if (!items.length) return null;
+
+  const cards = items.flatMap((item, index) => [
+    <div key={`screenshot-${index}-a`} className="screenshot-marquee-card">
+      <img src={item.img} alt={item.label} />
+      <div className="screenshot-marquee-label">{item.label}</div>
+    </div>,
+    <div key={`screenshot-${index}-b`} className="screenshot-marquee-card">
+      <img src={item.img} alt={item.label} />
+      <div className="screenshot-marquee-label">{item.label}</div>
+    </div>,
+  ]);
+
+  return (
+    <div className="screenshot-marquee-shell" aria-label="Project screenshots carousel">
+      <div className="screenshot-marquee-strip">{cards}</div>
+    </div>
   );
 }
 
