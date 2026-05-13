@@ -1,9 +1,31 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useReveal } from "../hooks/useReveal";
 import { EXPERIENCE } from "../data";
 
+function useSpineProgress(ref) {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const onScroll = () => {
+      const rect = el.getBoundingClientRect();
+      const wh = window.innerHeight;
+      const p = Math.max(0, Math.min(100,
+        ((wh * 0.85 - rect.top) / rect.height) * 100
+      ));
+      setProgress(p);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [ref]);
+  return progress;
+}
+
 export default function Experience() {
   const [hdrRef, hdrVis] = useReveal();
+  const timelineRef = useRef(null);
+  const spineProgress = useSpineProgress(timelineRef);
 
   return (
     <section
@@ -11,7 +33,8 @@ export default function Experience() {
       style={{
         padding: "100px 0",
         background: "rgba(13,27,42,.5)",
-        position: "relative", zIndex: 1,
+        position: "relative",
+        zIndex: 1,
         borderTop: "1px solid rgba(238,242,247,.05)",
         borderBottom: "1px solid rgba(238,242,247,.05)",
       }}
@@ -20,32 +43,47 @@ export default function Experience() {
         <div
           ref={hdrRef}
           style={{
-            marginBottom: 56,
+            marginBottom: 72,
             opacity: hdrVis ? 1 : 0,
             transform: hdrVis ? "none" : "translateY(38px)",
-            transition: "opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)",
+            transition:
+              "opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)",
           }}
         >
-          <p style={{
-            fontFamily: "'Space Mono', monospace",
-            fontSize: 11, fontWeight: 700, letterSpacing: ".18em",
-            textTransform: "uppercase", color: "#e8604a", marginBottom: 10,
-          }}>
+          <p
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: ".18em",
+              textTransform: "uppercase",
+              color: "#e8604a",
+              marginBottom: 10,
+            }}
+          >
             Work History
           </p>
-          <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontSize: "clamp(32px,4vw,56px)",
-            fontWeight: 900, letterSpacing: 0, lineHeight: 1.0,
-            textTransform: "uppercase", color: "#eef2f7",
-          }}>
+          <h2
+            style={{
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontSize: "clamp(32px,4vw,56px)",
+              fontWeight: 900,
+              lineHeight: 1,
+              textTransform: "uppercase",
+              color: "#eef2f7",
+            }}
+          >
             Professional Experience
           </h2>
         </div>
 
-        <div className="exp-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="exp-zigzag" ref={timelineRef}>
+          <div className="exp-spine" aria-hidden="true">
+            <div className="exp-spine-fill" style={{ height: `${spineProgress}%` }} />
+          </div>
+
           {EXPERIENCE.map((e, i) => (
-            <ExpCard key={i} data={e} delay={i * 0.07} />
+            <ZigzagItem key={i} data={e} index={i} delay={i * 0.08} />
           ))}
         </div>
       </div>
@@ -53,59 +91,80 @@ export default function Experience() {
   );
 }
 
-function ExpCard({ data, delay }) {
-  const [ref, vis]            = useReveal();
+function ZigzagItem({ data, index, delay }) {
+  const [ref, vis] = useReveal();
   const [hovered, setHovered] = useState(false);
-  const { company, role, period, color, desc } = data;
+  const isA = index % 2 === 0;
+  const { company, role, period, color, desc, logo } = data;
 
   return (
     <div
       ref={ref}
+      className={`exp-zz-item ${isA ? "exp-zz-a" : "exp-zz-b"}`}
+      style={{
+        "--exp-accent": color,
+        opacity: vis ? 1 : 0,
+        transform: vis ? "none" : `translateX(${isA ? -36 : 36}px)`,
+        transitionDelay: `${delay}s`,
+        transition:
+          "opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1)",
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{
-        padding: "28px 30px", borderRadius: 20,
-        background: hovered ? "rgba(21,35,53,.95)" : "rgba(13,27,42,.8)",
-        border: "1px solid rgba(238,242,247,.07)",
-        borderLeft: `3px solid ${color}`,
-        transition: "all .3s",
-        transform: vis
-          ? hovered ? "translateX(6px)" : "none"
-          : "translateY(38px)",
-        opacity: vis ? 1 : 0,
-        transitionDelay: delay + "s",
-      }}
     >
-      <div style={{
-        display: "flex", justifyContent: "space-between",
-        alignItems: "flex-start", marginBottom: 12, flexWrap: "wrap", gap: 8,
-      }}>
-        <div>
-          <div style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
-            fontSize: 19, fontWeight: 700,
-            color: "#eef2f7", textTransform: "uppercase", letterSpacing: .3,
-          }}>
-            {company}
+      {/* Card */}
+      <div className="exp-zz-card-col">
+        <div
+          className="exp-zz-card"
+          style={{ transform: hovered ? "translateY(-5px)" : "none" }}
+        >
+          <div className="exp-zz-logo-row">
+            <CompanyLogo logo={logo} company={company} />
+            <div className="exp-zz-meta">
+              <h3 className="exp-company-name">{company}</h3>
+              <p className="exp-role">{role}</p>
+            </div>
           </div>
-          <div style={{
-            fontFamily: "'Barlow', sans-serif",
-            fontSize: 12, fontWeight: 700, color, marginTop: 3,
-          }}>{role}</div>
+          <div className="exp-zz-divider" />
+          <p className="exp-desc">{desc}</p>
         </div>
-        <span style={{
-          fontFamily: "'Space Mono', monospace",
-          fontSize: 10, color: "rgba(106,139,168,.7)",
-          padding: "4px 11px", borderRadius: 20,
-          background: "rgba(238,242,247,.04)", whiteSpace: "nowrap",
-        }}>
-          {period}
-        </span>
       </div>
-      <p style={{
-        fontFamily: "'Barlow', sans-serif",
-        fontSize: 13, color: "rgba(106,139,168,.75)", lineHeight: 1.77,
-      }}>{desc}</p>
+
+      {/* Central dot */}
+      <div className="exp-zz-axis" aria-hidden="true">
+        <span className="exp-zz-dot" />
+      </div>
+
+      {/* Duration */}
+      <div className="exp-zz-period-col">
+        <span className="exp-period-badge">{period}</span>
+      </div>
     </div>
+  );
+}
+
+function CompanyLogo({ logo, company }) {
+  const [broken, setBroken] = useState(false);
+  const initials = company
+    .split(" ")
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
+  return (
+    <span className="exp-logo-shell" aria-hidden="true">
+      {logo && !broken ? (
+        <img
+          src={logo}
+          alt={`${company} logo`}
+          className="exp-logo-img"
+          onError={() => setBroken(true)}
+          loading="lazy"
+        />
+      ) : (
+        <span className="exp-logo-fallback">{initials}</span>
+      )}
+    </span>
   );
 }

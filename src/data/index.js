@@ -28,6 +28,11 @@ import rideAwayScreen6 from "../images/rideAway/0x0ss (5).png";
 import rightAwayVideoSrc from "../images/rideAway/rightAwayideo.mp4";
 export { rightAwayVideoSrc };
 
+import dexniveLogo from "../images/logo/dexnive.webp";
+import launchboxLogo from "../images/logo/launchbox.svg";
+import shispareLogo from "../images/logo/shispare.webp";
+import waysAviationLogo from "../images/logo/waysaviation.png";
+
 export const HERO = {
   name: "Syed\nMuhammad Shah",
   roles: [
@@ -214,6 +219,7 @@ export const EXPERIENCE = [
     company: "Dexnive",
     role:    "Mobile Application Developer",
     period:  "Jan 2026 – Present",
+    logo:    dexniveLogo,
     color:   "#00e5a0",
     desc:    "Building scalable cross-platform apps with Flutter & Swift. Clean Architecture, MVVM, BLoC, REST APIs, Firebase, real-time features.",
   },
@@ -221,6 +227,7 @@ export const EXPERIENCE = [
     company: "LaunchBox Global",
     role:    "Sr. Flutter Developer",
     period:  "Sep 2024 – Present",
+    logo:    launchboxLogo,
     color:   "#7c6fff",
     desc:    "Led Epic Rides — real-time ride-booking with WebSockets, Google Maps & Firebase. Node.js backend on AWS. Delivered 20% performance uplift.",
   },
@@ -228,6 +235,7 @@ export const EXPERIENCE = [
     company: "Supersoft Technologies",
     role:    "Sr. Flutter Developer",
     period:  "Apr 2023 – Sep 2024",
+    logo:    null,
     color:   "#ff6b6b",
     desc:    "Built Sharjah Charity International app — secure donations, campaign management, TDD, Firebase & API integration.",
   },
@@ -235,6 +243,7 @@ export const EXPERIENCE = [
     company: "Ways Aviation",
     role:    "Software Engineer",
     period:  "Jul 2022 – Apr 2023",
+    logo:    waysAviationLogo,
     color:   "#ffa500",
     desc:    "Enterprise ERP development with Flutter, SQL integration, modular architecture and reusable component libraries.",
   },
@@ -242,6 +251,7 @@ export const EXPERIENCE = [
     company: "Shispare pvt ltd",
     role:    "Junior Software Engineer",
     period:  "Jun 2021 – Jul 2022",
+    logo:    shispareLogo,
     color:   "#00bfff",
     desc:    "Laravel REST APIs for Warehouse & SphereWMS 3PL. Token auth, RBAC, audit logging, SQL query optimization.",
   },
@@ -253,3 +263,6 @@ export const EDUCATION = [
   { deg: "Computer Science (FSC)",        inst: "Army Public School & College",        year: "2017 – 2019" },
   { deg: "Computer Software Engineering", inst: "Aptech Pakistan",                     year: "2020 – 2022" },
 ];
+
+
+

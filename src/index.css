@@ -1237,6 +1237,213 @@ section {
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+/* ── Experience Zigzag Timeline ─────────────────────────── */
+.exp-zigzag {
+  position: relative;
+}
+
+.exp-spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: rgba(238,242,247,.07);
+  border-radius: 2px;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.exp-spine-fill {
+  width: 100%;
+  background: linear-gradient(180deg, #e8604a 0%, #7c6fff 50%, #00e5a0 100%);
+  border-radius: 2px;
+  transition: height .1s linear;
+}
+
+/* Each row */
+.exp-zz-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 18px 0;
+  z-index: 1;
+}
+
+/* Card column */
+.exp-zz-card-col {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Center axis (dot) */
+.exp-zz-axis {
+  flex: 0 0 80px;
+  display: flex;
+  justify-content: center;
+  padding-top: 26px;
+}
+
+.exp-zz-dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #0d1b2a;
+  border: 2.5px solid var(--exp-accent);
+  box-shadow:
+    0 0 0 5px #0d1b2a,
+    0 0 0 8px color-mix(in srgb, var(--exp-accent) 28%, transparent);
+  position: relative;
+  z-index: 2;
+}
+
+/* Period column */
+.exp-zz-period-col {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 28px;
+}
+
+/* Phase A — card LEFT, period RIGHT */
+.exp-zz-a .exp-zz-card-col {
+  order: 1;
+  padding-right: 40px;
+}
+.exp-zz-a .exp-zz-axis {
+  order: 2;
+}
+.exp-zz-a .exp-zz-period-col {
+  order: 3;
+  padding-left: 40px;
+  justify-content: flex-start;
+}
+
+/* Phase B — period LEFT, card RIGHT */
+.exp-zz-b .exp-zz-card-col {
+  order: 3;
+  padding-left: 40px;
+}
+.exp-zz-b .exp-zz-axis {
+  order: 2;
+}
+.exp-zz-b .exp-zz-period-col {
+  order: 1;
+  padding-right: 40px;
+  justify-content: flex-end;
+}
+
+/* Card */
+.exp-zz-card {
+  padding: 28px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(21,35,53,.92), rgba(13,27,42,.92));
+  border: 1px solid rgba(238,242,247,.08);
+  border-top: 2.5px solid var(--exp-accent);
+  box-shadow: 0 16px 48px rgba(0,0,0,.25);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+.exp-zz-card:hover {
+  box-shadow:
+    0 24px 64px rgba(0,0,0,.32),
+    0 0 0 1px color-mix(in srgb, var(--exp-accent) 30%, transparent);
+}
+
+/* Logo row inside card */
+.exp-zz-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.exp-zz-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Divider */
+.exp-zz-divider {
+  height: 1px;
+  background: rgba(238,242,247,.07);
+  margin: 18px 0;
+}
+
+/* Logo shell */
+.exp-logo-shell {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid rgba(238,242,247,.1);
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+}
+
+.exp-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+.exp-logo-fallback {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 800;
+  color: #0d1b2a;
+  background: color-mix(in srgb, var(--exp-accent) 80%, #fff);
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* Text */
+.exp-company-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--hadafi-white);
+}
+
+.exp-role {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: color-mix(in srgb, var(--exp-accent) 80%, #fff);
+}
+
+.exp-desc {
+  color: rgba(238,242,247,.68);
+  font-size: 14px;
+  line-height: 1.74;
+}
+
+/* Period badge */
+.exp-period-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(238,242,247,.045);
+  border: 1px solid rgba(238,242,247,.1);
+  color: rgba(238,242,247,.6);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1180px) {
   .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1250,7 +1457,6 @@ section {
   .skills-header-panel { max-width: 520px; }
   .skill-card { min-height: 270px; }
   .about-grid  { grid-template-columns: 1fr !important; gap: 48px !important; }
-  .exp-grid    { grid-template-columns: 1fr !important; }
   .edu-grid    { grid-template-columns: 1fr 1fr !important; }
   .hero-grid   { grid-template-columns: 1fr !important; gap: 30px !important; }
   .hero-visual { max-width: 620px; width: 100%; margin: 0 auto; }
@@ -1333,6 +1539,40 @@ section {
   .video-section-head {
     align-items: flex-start;
     flex-direction: column;
+  }
+  /* Collapse zigzag to single column */
+  .exp-spine {
+    left: 20px;
+    transform: none;
+  }
+  .exp-zz-item {
+    flex-direction: column;
+    padding-left: 52px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  .exp-zz-a .exp-zz-card-col,
+  .exp-zz-b .exp-zz-card-col {
+    order: 2;
+    padding: 0;
+    width: 100%;
+  }
+  .exp-zz-a .exp-zz-axis,
+  .exp-zz-b .exp-zz-axis {
+    order: 1;
+    position: absolute;
+    left: 11px;
+    top: 24px;
+    padding: 0;
+    flex: none;
+    width: auto;
+  }
+  .exp-zz-a .exp-zz-period-col,
+  .exp-zz-b .exp-zz-period-col {
+    order: 3;
+    padding: 12px 0 0;
+    justify-content: flex-start;
+    flex: none;
   }
 }
 
@@ -1518,6 +1758,16 @@ section {
   .btn-dim {
     width: 100%;
     text-align: center;
+  }
+  .exp-zz-card {
+    padding: 18px;
+  }
+  .exp-company-name {
+    font-size: 19px;
+  }
+  .exp-logo-shell {
+    width: 50px;
+    height: 50px;
   }
 }
 
