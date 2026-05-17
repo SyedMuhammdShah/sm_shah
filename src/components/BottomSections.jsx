@@ -17,14 +17,14 @@ export function Education() {
           }}
         >
           <p style={{
-            fontFamily: "'Space Mono', monospace",
+            fontFamily: "'JetBrains Mono', monospace",
             fontSize: 11, fontWeight: 700, letterSpacing: ".18em",
             textTransform: "uppercase", color: "#d4a847", marginBottom: 10,
           }}>
             Education
           </p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Montserrat', sans-serif",
             fontSize: "clamp(28px,4vw,52px)",
             fontWeight: 900, letterSpacing: 0, lineHeight: 1.0,
             textTransform: "uppercase", color: "#eef2f7", marginBottom: 44,
@@ -58,16 +58,16 @@ function EduCard({ data }) {
       }}
     >
       <div style={{
-        fontFamily: "'Space Mono', monospace",
+        fontFamily: "'JetBrains Mono', monospace",
         fontSize: 10, color: "#d4a847", fontWeight: 700, marginBottom: 8,
       }}>{data.year}</div>
       <div style={{
-        fontFamily: "'Barlow Condensed', sans-serif",
+        fontFamily: "'Montserrat', sans-serif",
         fontSize: 17, fontWeight: 700, color: "#eef2f7", marginBottom: 5,
         textTransform: "uppercase",
       }}>{data.deg}</div>
       <div style={{
-        fontFamily: "'Barlow', sans-serif",
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
         fontSize: 12, color: "rgba(106,139,168,.7)",
       }}>{data.inst}</div>
     </div>
@@ -104,14 +104,14 @@ export function Contact() {
           }} />
 
           <p style={{
-            fontFamily: "'Space Mono', monospace",
+            fontFamily: "'JetBrains Mono', monospace",
             fontSize: 11, fontWeight: 700, letterSpacing: ".18em",
             textTransform: "uppercase", color: "#e8604a", marginBottom: 12,
           }}>
             Get In Touch
           </p>
           <h2 style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Montserrat', sans-serif",
             fontSize: "clamp(32px,4vw,58px)",
             fontWeight: 900, letterSpacing: 0, lineHeight: 1.0,
             textTransform: "uppercase", marginBottom: 18, color: "#eef2f7",
@@ -119,7 +119,7 @@ export function Contact() {
             Let's build something<br />great together.
           </h2>
           <p style={{
-            fontFamily: "'Barlow', sans-serif",
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
             color: "rgba(238,242,247,.55)", fontSize: 16, lineHeight: 1.82,
             marginBottom: 50, maxWidth: 520, marginLeft: "auto", marginRight: "auto",
           }}>
@@ -140,7 +140,7 @@ export function Contact() {
               "📧 syedmuhammadshah235@gmail.com",
             ].map((item) => (
               <div key={item} style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'JetBrains Mono', monospace",
                 display: "flex", alignItems: "center", gap: 7,
                 color: "rgba(106,139,168,.6)", fontSize: 11,
               }}>
@@ -163,7 +163,7 @@ export function Footer() {
       position: "relative", zIndex: 1,
     }}>
       <p style={{
-        fontFamily: "'Space Mono', monospace",
+        fontFamily: "'JetBrains Mono', monospace",
         color: "rgba(106,139,168,.35)", fontSize: 11,
         letterSpacing: ".06em",
       }}>

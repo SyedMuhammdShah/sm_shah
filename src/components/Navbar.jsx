@@ -50,7 +50,7 @@ export default function Navbar() {
         <div
           onClick={() => goto("home")}
           style={{
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Montserrat', sans-serif",
             fontSize: 28, fontWeight: 900,
             letterSpacing: 1, cursor: "pointer",
             textTransform: "uppercase",
@@ -93,7 +93,7 @@ export default function Navbar() {
                 cursor: "pointer",
                 padding: "7px 14px", borderRadius: 8,
                 transition: "all .2s",
-                fontFamily: "'Barlow', sans-serif",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
                 position: "relative",
                 textTransform: "uppercase",
                 letterSpacing: ".08em",
@@ -122,7 +122,7 @@ export default function Navbar() {
               padding: "9px 22px", borderRadius: 9,
               background: "linear-gradient(135deg,#e8604a,#c94a36)",
               color: "#fff", fontWeight: 700, fontSize: 13,
-              fontFamily: "'Barlow', sans-serif",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
               marginLeft: 12, textDecoration: "none",
               transition: "all .25s", display: "inline-block",
               boxShadow: "0 4px 18px rgba(232,96,74,.3)",

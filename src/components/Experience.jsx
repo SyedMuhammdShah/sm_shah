@@ -52,7 +52,7 @@ export default function Experience() {
         >
           <p
             style={{
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'JetBrains Mono', monospace",
               fontSize: 11,
               fontWeight: 700,
               letterSpacing: ".18em",
@@ -65,7 +65,7 @@ export default function Experience() {
           </p>
           <h2
             style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Montserrat', sans-serif",
               fontSize: "clamp(32px,4vw,56px)",
               fontWeight: 900,
               lineHeight: 1,

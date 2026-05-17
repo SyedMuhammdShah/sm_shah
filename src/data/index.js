@@ -30,7 +30,7 @@ export { rightAwayVideoSrc };
 
 import dexniveLogo from "../images/logo/dexnive.webp";
 import launchboxLogo from "../images/logo/launchbox.svg";
-import shispareLogo from "../images/logo/shispare.webp";
+import shispareLogo from "../images/logo/shispare_logo.jpg";
 import waysAviationLogo from "../images/logo/waysaviation.png";
 
 export const HERO = {

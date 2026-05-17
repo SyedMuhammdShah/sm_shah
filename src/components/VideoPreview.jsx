@@ -220,7 +220,7 @@ export default function VideoPreview() {
                   borderRadius: 999,
                   background: "rgba(232,96,74,.1)",
                   border: "1px solid rgba(232,96,74,.24)",
-                  fontFamily: "'Space Mono',monospace",
+                  fontFamily: "'JetBrains Mono',monospace",
                   fontSize: 10,
                   fontWeight: 700,
                   color: "#f07b66",
@@ -242,7 +242,7 @@ export default function VideoPreview() {
               </span>
               <span
                 style={{
-                  fontFamily: "'Space Mono',monospace",
+                  fontFamily: "'JetBrains Mono',monospace",
                   fontSize: 10,
                   fontWeight: 700,
                   color: "rgba(212,168,71,.8)",
@@ -256,7 +256,7 @@ export default function VideoPreview() {
 
             <h2
               style={{
-                fontFamily: "'Barlow Condensed',sans-serif",
+                fontFamily: "'Montserrat',sans-serif",
                 fontSize: "clamp(46px,5.4vw,78px)",
                 fontWeight: 900,
                 lineHeight: 0.9,
@@ -271,7 +271,7 @@ export default function VideoPreview() {
 
             <p
               style={{
-                fontFamily: "'Barlow',sans-serif",
+                fontFamily: "'Plus Jakarta Sans',sans-serif",
                 fontSize: "clamp(15px,1.12vw,17px)",
                 color: "rgba(238,242,247,.72)",
                 lineHeight: 1.7,

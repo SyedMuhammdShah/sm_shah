@@ -77,7 +77,7 @@ export default function Hero() {
               background: "rgba(232,96,74,.1)",
               border: "1px solid rgba(232,96,74,.25)",
               color: C.coral2,
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'JetBrains Mono', monospace",
               fontSize: 11,
               fontWeight: 700,
               marginBottom: 24,
@@ -100,8 +100,8 @@ export default function Hero() {
 
           <h1
             style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontSize: "clamp(54px, 6.2vw, 86px)",
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: "clamp(54px, 6.2vw, 70px)",
               fontWeight: 900,
               lineHeight: 0.9,
               color: C.white,
@@ -117,7 +117,7 @@ export default function Hero() {
                   display: "block",
                   color: i === 0 ? C.white : C.coral2,
                   textShadow:
-                    i === 0 ? "none" : "0 16px 46px rgba(232,96,74,.22)",
+                    i === 0 ? "none" : "0 10px 30px rgba(232,96,74,.22)",
                 }}
               >
                 {line}
@@ -127,7 +127,7 @@ export default function Hero() {
 
           <div
             style={{
-              fontFamily: "'Barlow', sans-serif",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: "clamp(17px, 1.5vw, 21px)",
               fontWeight: 700,
               color: C.gold,
@@ -150,7 +150,7 @@ export default function Hero() {
 
           <p
             style={{
-              fontFamily: "'Barlow', sans-serif",
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontSize: "clamp(15px, 1.12vw, 17px)",
               color: "rgba(238,242,247,.65)",
               maxWidth: 560,
@@ -228,7 +228,7 @@ export default function Hero() {
               >
                 <div
                   style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontFamily: "'Montserrat', sans-serif",
                     fontSize: 31,
                     fontWeight: 900,
                     color: C.coral2,
@@ -239,7 +239,7 @@ export default function Hero() {
                 </div>
                 <div
                   style={{
-                    fontFamily: "'Space Mono', monospace",
+                    fontFamily: "'JetBrains Mono', monospace",
                     fontSize: 9,
                     color: C.muted,
                     lineHeight: 1.25,
@@ -309,7 +309,7 @@ function ProjectSpotlight() {
           <div>
             <div
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 10,
                 color: C.coral2,
                 letterSpacing: ".18em",
@@ -321,7 +321,7 @@ function ProjectSpotlight() {
             </div>
             <div
               style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Montserrat', sans-serif",
                 fontSize: 34,
                 fontWeight: 900,
                 color: C.white,
@@ -339,7 +339,7 @@ function ProjectSpotlight() {
               background: "rgba(232,96,74,.12)",
               border: "1px solid rgba(232,96,74,.28)",
               color: C.coral2,
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'JetBrains Mono', monospace",
               fontSize: 10,
               fontWeight: 700,
             }}
@@ -444,7 +444,7 @@ function ProjectSpotlight() {
           >
             <div
               style={{
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Montserrat', sans-serif",
                 fontSize: 18,
                 fontWeight: 800,
                 color: C.coral2,
@@ -456,7 +456,7 @@ function ProjectSpotlight() {
             </div>
             <div
               style={{
-                fontFamily: "'Barlow', sans-serif",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
                 fontSize: 11,
                 color: C.muted,
                 lineHeight: 1.25,

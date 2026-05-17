@@ -53,14 +53,14 @@ export default function About() {
               background: "rgba(232,96,74,.09)", border: "1px solid rgba(232,96,74,.22)",
               fontSize: 11, color: "#f07b66", fontWeight: 700,
               letterSpacing: ".14em", textTransform: "uppercase",
-              fontFamily: "'Space Mono', monospace", marginBottom: 20,
+              fontFamily: "'JetBrains Mono', monospace", marginBottom: 20,
             }}>
               About Me
             </div>
 
             {/* Heading */}
             <h2 style={{
-              fontFamily: "'Barlow Condensed', sans-serif",
+              fontFamily: "'Montserrat', sans-serif",
               fontSize: "clamp(32px, 4vw, 56px)",
               fontWeight: 900, lineHeight: 1.0,
               textTransform: "uppercase", color: "#eef2f7", marginBottom: 22,
@@ -71,7 +71,7 @@ export default function About() {
             {/* Paragraphs */}
             {ABOUT.paragraphs.map((p, i) => (
               <p key={i} style={{
-                fontFamily: "'Barlow', sans-serif",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
                 color: "rgba(238,242,247,.62)", lineHeight: 1.82, fontSize: 15.5, marginBottom: 14,
               }}>
                 {p}
@@ -81,7 +81,7 @@ export default function About() {
             {/* ── Tech stack icon badges ── */}
             <div style={{ marginTop: 28, marginBottom: 30 }}>
               <p style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 9, fontWeight: 700, color: "rgba(106,139,168,.6)",
                 letterSpacing: ".18em", textTransform: "uppercase", marginBottom: 14,
               }}>
@@ -118,7 +118,7 @@ export default function About() {
                       {t.symbol}
                     </span>
                     <span style={{
-                      fontFamily: "'Barlow', sans-serif",
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
                       fontSize: 12, fontWeight: 600, color: t.color,
                     }}>
                       {t.name}
@@ -180,7 +180,7 @@ export default function About() {
                     boxShadow: "0 0 8px #e8604a",
                   }} />
                   <span style={{
-                    fontFamily: "'Space Mono', monospace",
+                    fontFamily: "'JetBrains Mono', monospace",
                     fontSize: 9, fontWeight: 700, color: "#f07b66",
                     letterSpacing: ".14em", textTransform: "uppercase",
                   }}>
@@ -228,13 +228,13 @@ export default function About() {
                   }}>{c.icon}</div>
                   <div>
                     <div style={{
-                      fontFamily: "'Barlow Condensed', sans-serif",
+                      fontFamily: "'Montserrat', sans-serif",
                       fontSize: 14, fontWeight: 700,
                       color: "#eef2f7", textTransform: "uppercase", letterSpacing: .3,
                       marginBottom: 4,
                     }}>{c.title}</div>
                     <div style={{
-                      fontFamily: "'Barlow', sans-serif",
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
                       fontSize: 11.5, color: "rgba(106,139,168,.8)", lineHeight: 1.6,
                     }}>{c.desc}</div>
                   </div>
