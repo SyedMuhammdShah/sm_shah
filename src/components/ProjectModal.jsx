@@ -30,6 +30,12 @@ export default function ProjectModal({ project, onClose }) {
   const hasScreens = screens.length > 0;
   const hasLinks = Object.keys(links).length > 0;
   const activeScreen = hasScreens ? screens[activeThumb] : null;
+  const showPrevScreen = () => {
+    setActiveThumb((current) => (current === 0 ? screens.length - 1 : current - 1));
+  };
+  const showNextScreen = () => {
+    setActiveThumb((current) => (current === screens.length - 1 ? 0 : current + 1));
+  };
 
   return (
     <div
@@ -86,33 +92,65 @@ export default function ProjectModal({ project, onClose }) {
 
             {hasScreens && (
               <ProjectSection title="Screenshots">
-                <div className="project-screen-viewer">
-                  <div className="project-screen-main">
-                    <img
-                      src={activeScreen.img}
-                      alt={activeScreen.label}
-                      onClick={() => setImageOpen(true)}
-                      style={{ cursor: "zoom-in" }}
-                    />
-                  </div>
-                  <div className="project-screen-label">{activeScreen.label}</div>
-                </div>
-
-                <div className="project-thumb-grid">
-                  {screens.map((screen, index) => (
-                    <button
-                      key={screen.label}
-                      type="button"
-                      className={index === activeThumb ? "active" : ""}
-                      onClick={() => {
-                        setActiveThumb(index);
-                        setImageOpen(true);
-                      }}
-                      aria-label={`Show ${screen.label}`}
-                    >
-                      <img src={screen.img} alt={screen.label} />
+                <div className="project-screen-gallery">
+                  <div className="project-screen-toolbar">
+                    <div>
+                      <strong>{activeScreen.label}</strong>
+                      <span>
+                        {activeThumb + 1} / {screens.length}
+                      </span>
+                    </div>
+                    <button type="button" onClick={() => setImageOpen(true)}>
+                      View full size
                     </button>
-                  ))}
+                  </div>
+
+                  <div className="project-screen-stage">
+                    <button
+                      type="button"
+                      className="project-screen-nav project-screen-nav-prev"
+                      onClick={showPrevScreen}
+                      aria-label="Previous screenshot"
+                    >
+                      &lt;
+                    </button>
+
+                    <button
+                      type="button"
+                      className="project-screen-main"
+                      onClick={() => setImageOpen(true)}
+                      aria-label={`Open ${activeScreen.label}`}
+                    >
+                      <span className="project-phone-frame">
+                        <span className="project-phone-speaker" />
+                        <img src={activeScreen.img} alt={activeScreen.label} />
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className="project-screen-nav project-screen-nav-next"
+                      onClick={showNextScreen}
+                      aria-label="Next screenshot"
+                    >
+                      &gt;
+                    </button>
+                  </div>
+
+                  <div className="project-thumb-grid">
+                    {screens.map((screen, index) => (
+                      <button
+                        key={screen.label}
+                        type="button"
+                        className={index === activeThumb ? "active" : ""}
+                        onClick={() => setActiveThumb(index)}
+                        aria-label={`Show ${screen.label}`}
+                      >
+                        <img src={screen.img} alt={screen.label} />
+                        <span>{screen.label}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </ProjectSection>
             )}
