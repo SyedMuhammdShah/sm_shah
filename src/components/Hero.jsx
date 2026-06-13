@@ -1,8 +1,10 @@
+import { useState, useEffect } from "react";
 import { useTyping } from "../hooks/useTyping";
 import { HERO } from "../data";
 import epic1 from "../images/epicRides/pic1.png";
 import hadafi1 from "../images/hadafi/Phone SS 2.jpg";
 import rightAway1 from "../images/rideAway/0x0ss.png";
+
 
 const C = {
   coral: "#e8604a",
@@ -21,6 +23,25 @@ export default function Hero() {
   const typed = useTyping(HERO.roles);
   const goto = (id) =>
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    let handle;
+    const handleMouseMove = (event) => {
+      if (handle) cancelAnimationFrame(handle);
+      handle = requestAnimationFrame(() => {
+        const x = (event.clientX / window.innerWidth - 0.5) * 2;
+        const y = (event.clientY / window.innerHeight - 0.5) * 2;
+        setMousePos({ x, y });
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (handle) cancelAnimationFrame(handle);
+    };
+  }, []);
 
   return (
     <section
@@ -42,12 +63,14 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           position: "absolute",
-          inset: 0,
+          inset: -40,
           background:
             "linear-gradient(90deg, rgba(238,242,247,.035) 1px, transparent 1px), linear-gradient(rgba(238,242,247,.03) 1px, transparent 1px)",
           backgroundSize: "76px 76px",
           maskImage:
             "linear-gradient(180deg, transparent 0%, #000 16%, #000 76%, transparent 100%)",
+          transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)`,
+          transition: "transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)",
         }}
       />
 
@@ -254,14 +277,14 @@ export default function Hero() {
         </div>
 
         <div className="hero-visual">
-          <ProjectSpotlight />
+          <ProjectSpotlight mousePos={mousePos} />
         </div>
       </div>
     </section>
   );
 }
 
-function ProjectSpotlight() {
+function ProjectSpotlight({ mousePos }) {
   return (
     <div
       className="phone-collage"
@@ -271,8 +294,10 @@ function ProjectSpotlight() {
         maxWidth: 640,
         margin: "0 auto",
         height: 510,
+        perspective: 1200,
       }}
     >
+
       <div
         style={{
           position: "absolute",
@@ -283,6 +308,8 @@ function ProjectSpotlight() {
           border: "1px solid rgba(238,242,247,.09)",
           boxShadow: "0 34px 100px rgba(0,0,0,.36)",
           overflow: "hidden",
+          transform: `translate(${mousePos.x * 6}px, ${mousePos.y * 6}px) rotateY(${mousePos.x * 2}deg) rotateX(${-mousePos.y * 2}deg)`,
+          transition: "transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)",
         }}
       >
         <div
@@ -354,7 +381,8 @@ function ProjectSpotlight() {
         style={{
           left: 0,
           top: 140,
-          transform: "rotate(-5deg)",
+          transform: `rotate(-5deg) translate(${mousePos.x * 12}px, ${mousePos.y * 12}px) rotateY(${mousePos.x * 6}deg) rotateX(${-mousePos.y * 6}deg)`,
+          transition: "transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)",
         }}
       />
 
@@ -363,7 +391,8 @@ function ProjectSpotlight() {
         style={{
           right: 0,
           top: 166,
-          transform: "rotate(5deg)",
+          transform: `rotate(5deg) translate(${mousePos.x * 12}px, ${mousePos.y * 12}px) rotateY(${mousePos.x * 6}deg) rotateX(${-mousePos.y * 6}deg)`,
+          transition: "transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)",
         }}
       />
 
@@ -373,7 +402,8 @@ function ProjectSpotlight() {
           position: "absolute",
           left: "50%",
           top: 74,
-          transform: "translateX(-50%)",
+          transform: `translateX(-50%) translate(${mousePos.x * 24}px, ${mousePos.y * 24}px) rotateY(${mousePos.x * 10}deg) rotateX(${-mousePos.y * 10}deg)`,
+          transition: "transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)",
           zIndex: 5,
           width: 250,
         }}
@@ -423,6 +453,8 @@ function ProjectSpotlight() {
           display: "grid",
           gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
           gap: 10,
+          transform: `translate(${mousePos.x * 16}px, ${mousePos.y * 16}px) rotateY(${mousePos.x * 4}deg) rotateX(${-mousePos.y * 4}deg)`,
+          transition: "transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)",
         }}
       >
         {[

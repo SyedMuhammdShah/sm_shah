@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useReveal } from "../hooks/useReveal";
 import { PROJECTS } from "../data";
 import ProjectModal from "./ProjectModal";
@@ -7,11 +7,54 @@ import { StoreIcon } from "./StoreIcons";
 export default function Projects() {
   const [hdrRef, hdrVis] = useReveal();
   const [selected, setSelected] = useState(null);
+  const [activeScreenshotIndex, setActiveScreenshotIndex] = useState(null);
 
   const featuredProjects = PROJECTS.filter((project) => (project.screens ?? []).length >= 3);
   const screenshotItems = featuredProjects
     .flatMap((project) => (project.screens ?? []).slice(0, 3))
     .filter(Boolean);
+
+  const handleScreenshotClick = (item) => {
+    const originalIndex = screenshotItems.findIndex((si) => si.img === item.img);
+    if (originalIndex !== -1) {
+      setActiveScreenshotIndex(originalIndex);
+    }
+  };
+
+  const showPrevScreenshot = () => {
+    setActiveScreenshotIndex((current) =>
+      current === 0 ? screenshotItems.length - 1 : current - 1
+    );
+  };
+
+  const showNextScreenshot = () => {
+    setActiveScreenshotIndex((current) =>
+      current === screenshotItems.length - 1 ? 0 : current + 1
+    );
+  };
+
+  useEffect(() => {
+    if (activeScreenshotIndex === null) return;
+    const handleKeyDown = (event) => {
+      if (event.key === "ArrowLeft") {
+        setActiveScreenshotIndex((current) =>
+          current === 0 ? screenshotItems.length - 1 : current - 1
+        );
+      } else if (event.key === "ArrowRight") {
+        setActiveScreenshotIndex((current) =>
+          current === screenshotItems.length - 1 ? 0 : current + 1
+        );
+      } else if (event.key === "Escape") {
+        setActiveScreenshotIndex(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [activeScreenshotIndex, screenshotItems.length]);
 
   return (
     <section id="projects" style={{ padding: "90px 0", position: "relative", zIndex: 1 }}>
@@ -43,7 +86,7 @@ export default function Projects() {
           </p>
         </div>
 
-        <ScreenshotsMarquee items={screenshotItems} />
+        <ScreenshotsMarquee items={screenshotItems} onScreenshotClick={handleScreenshotClick} />
 
         <div className="proj-grid featured-project-grid">
           {featuredProjects.map((project, index) => (
@@ -58,16 +101,56 @@ export default function Projects() {
       </div>
 
       <ProjectModal project={selected} onClose={() => setSelected(null)} />
+
+      {activeScreenshotIndex !== null && screenshotItems[activeScreenshotIndex] && (
+        <div className="image-viewer-backdrop" onClick={() => setActiveScreenshotIndex(null)}>
+          <div className="image-viewer-shell" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              className="image-viewer-close"
+              onClick={() => setActiveScreenshotIndex(null)}
+              aria-label="Close image viewer"
+            >
+              ×
+            </button>
+
+            <button
+              type="button"
+              className="project-screen-nav project-screen-nav-prev"
+              onClick={showPrevScreenshot}
+            >
+              &lt;
+            </button>
+
+            <img src={screenshotItems[activeScreenshotIndex].img} alt={screenshotItems[activeScreenshotIndex].label} />
+
+            <button
+              type="button"
+              className="project-screen-nav project-screen-nav-next"
+              onClick={showNextScreenshot}
+            >
+              &gt;
+            </button>
+
+            <div className="image-viewer-caption">{screenshotItems[activeScreenshotIndex].label}</div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
 
-function ScreenshotsMarquee({ items }) {
-  if (!items.length) return null;
+function ScreenshotsMarquee({ items, onScreenshotClick }) {
+  if (!items || !items.length) return null;
 
-  const cards = [...items, ...items].map((item, index) => (
-    <div key={`screenshot-${index}`} className="screenshot-marquee-card">
-      <img src={item.img} alt={item.label} />
+  // Duplicate items 4 times to ensure seamless infinite scrolling on wide screens
+  const cards = [...items, ...items, ...items, ...items].map((item, index) => (
+    <div
+      key={`screenshot-${index}`}
+      className="screenshot-marquee-card"
+      onClick={() => onScreenshotClick(item)}
+    >
+      <img src={item.img} alt={item.label} loading="lazy" />
       <div className="screenshot-marquee-label">{item.label}</div>
     </div>
   ));

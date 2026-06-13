@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useReveal } from "../hooks/useReveal";
 import { SKILLS } from "../data";
 
+
 const META = {
   Mobile: {
     icon: "mobile",
@@ -107,24 +108,30 @@ export default function Skills() {
             transform: hdrVis ? "none" : "translateY(38px)",
             transition:
               "opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)",
+            alignItems: "center",
           }}
         >
-          <div>
-            <p className="skills-kicker">Tech Stack</p>
-            <h2>Delivery Stack</h2>
-          </div>
-
-          <div className="skills-header-panel">
-            <p>
-              From pixel-perfect mobile UI to backend infrastructure, I work
-              across the full product delivery stack.
-            </p>
+          {/* Left: title + panel */}
+          <div style={{ flex: 1 }}>
             <div>
-              <span>Mobile</span>
-              <span>Backend</span>
-              <span>Cloud</span>
+              <p className="skills-kicker">Tech Stack</p>
+              <h2>Delivery Stack</h2>
+            </div>
+
+            <div className="skills-header-panel" style={{ marginTop: 20 }}>
+              <p>
+                From pixel-perfect mobile UI to backend infrastructure, I work
+                across the full product delivery stack.
+              </p>
+              <div>
+                <span>Mobile</span>
+                <span>Backend</span>
+                <span>Cloud</span>
+              </div>
             </div>
           </div>
+
+
         </div>
 
         <div className="skills-grid">

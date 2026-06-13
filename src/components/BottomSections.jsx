@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useReveal } from "../hooks/useReveal";
 import { EDUCATION, HERO } from "../data";
 
+
 export function Education() {
   const [ref, vis] = useReveal();
 
@@ -94,6 +95,8 @@ export function Contact() {
             transition: "opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)",
           }}
         >
+
+
           {/* Inner glow */}
           <div style={{
             position: "absolute", top: "50%", left: "50%",
