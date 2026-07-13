@@ -28,6 +28,30 @@ import rideAwayScreen6 from "../images/rideAway/0x0ss (5).png";
 import rightAwayVideoSrc from "../images/rideAway/rightAwayideo.mp4";
 export { rightAwayVideoSrc };
 
+import wonominScreen1 from "../images/wonomin/1.png";
+import wonominScreen2 from "../images/wonomin/2.png";
+import wonominScreen3 from "../images/wonomin/3.png";
+import wonominScreen4 from "../images/wonomin/4.png";
+import wonominScreen5 from "../images/wonomin/5.png";
+import wonominScreen6 from "../images/wonomin/6.png";
+import wonominScreen7 from "../images/wonomin/7.png";
+import wonominScreen8 from "../images/wonomin/8.png";
+import wonominScreen9 from "../images/wonomin/9.png";
+import wonominScreen10 from "../images/wonomin/10.png";
+
+import luciScreen1 from "../images/luci/13.png";
+import luciScreen2 from "../images/luci/14.png";
+import luciScreen3 from "../images/luci/15.png";
+import luciScreen4 from "../images/luci/16.png";
+import luciScreen5 from "../images/luci/17.png";
+import luciScreen6 from "../images/luci/18.png";
+
+import aiVideoScreen1 from "../images/AiVideoPlayer/13.png";
+import aiVideoScreen2 from "../images/AiVideoPlayer/16.png";
+import aiVideoScreen3 from "../images/AiVideoPlayer/17.png";
+import aiVideoScreen4 from "../images/AiVideoPlayer/18.png";
+import aiVideoScreen5 from "../images/AiVideoPlayer/20.png";
+
 import dexniveLogo from "../images/logo/dexnive.webp";
 import launchboxLogo from "../images/logo/launchbox.svg";
 import shispareLogo from "../images/logo/shispare_logo.jpg";
@@ -184,6 +208,89 @@ Streamlines the entire supply chain from order to delivery — reducing friction
       { img: hadafiScreen5, label: "Explore Players" },
       { img: hadafiScreen6, label: "Reels Feed" },
       { img: hadafiScreen7, label: "In-App Payments" },
+    ],
+    links: {},
+  },
+  {
+    id: "wonomin",
+    icon: "🌸",
+    title: "Wonomin",
+    sub: "Women's Health & Wellness Platform",
+    color: "#e85d9e",
+    tags: ["In Development", "Health-Tech", "Women's Wellness"],
+    tech: ["Flutter", "Firebase", "BLoC", "REST APIs", "Push Notifications", "In-App Purchases"],
+    desc: `Comprehensive women's health & wellness platform covering all life stages — from menstrual tracking to pregnancy and menopause.
+
+• Cycle tracking with AI-powered predictions and health insights
+• Pregnancy mode with weekly milestones, baby development & symptom logging
+• Mood & energy journaling with trend analytics
+• Personalised wellness plans & expert article library
+• Community forum for shared experiences and support
+• Push reminders for medications, hydration & appointments
+• Secure health data storage with end-to-end encryption`,
+    screens: [
+      { img: wonominScreen1, label: "Wonomin Home" },
+      { img: wonominScreen2, label: "Cycle Tracking" },
+      { img: wonominScreen3, label: "Health Insights" },
+      { img: wonominScreen4, label: "Pregnancy Mode" },
+      { img: wonominScreen5, label: "Wellness Plan" },
+      { img: wonominScreen6, label: "Mood Journal" },
+      { img: wonominScreen7, label: "Community" },
+      { img: wonominScreen8, label: "Reminders" },
+      { img: wonominScreen9, label: "Articles" },
+      { img: wonominScreen10, label: "Profile" },
+    ],
+    links: {},
+  },
+  {
+    id: "luci",
+    icon: "🤖",
+    title: "Luci",
+    sub: "AI-Powered Companion App",
+    color: "#6c63ff",
+    tags: ["In Development", "AI / ML", "Productivity"],
+    tech: ["Flutter", "OpenAI API", "Firebase", "BLoC", "REST APIs", "Dart"],
+    desc: `Next-generation AI companion designed to boost productivity and provide intelligent, context-aware assistance.
+
+• Natural language conversations powered by large language models
+• Smart task planner — break goals into actionable steps with AI guidance
+• Context-aware suggestions based on user history and preferences
+• Voice input with real-time transcription and response
+• Personalised learning — adapts tone and style to individual users
+• Offline-capable with local model fallback for core features`,
+    screens: [
+      { img: luciScreen1, label: "Luci Home" },
+      { img: luciScreen2, label: "AI Chat" },
+      { img: luciScreen3, label: "Task Planner" },
+      { img: luciScreen4, label: "Smart Suggestions" },
+      { img: luciScreen5, label: "Voice Assistant" },
+      { img: luciScreen6, label: "Personalisation" },
+    ],
+    links: {},
+  },
+  {
+    id: "aivideoplayer",
+    icon: "🎬",
+    title: "AI Video Player",
+    sub: "Intelligent Media Player",
+    color: "#00c9a7",
+    tags: ["In Development", "AI / ML", "Media"],
+    tech: ["Flutter", "FFmpeg", "OpenAI API", "Firebase", "BLoC", "REST APIs"],
+    desc: `AI-enhanced video player delivering a smart, personalised viewing experience beyond standard media playback.
+
+• AI-generated scene summaries and chapter markers
+• Smart subtitle generation & translation in 40+ languages
+• Content-aware playback speed recommendations
+• Facial recognition for cast identification and info overlay
+• Playlist intelligence — auto-curates related content
+• Background audio mode with lock-screen controls
+• Cloud sync for watch history, bookmarks and preferences`,
+    screens: [
+      { img: aiVideoScreen1, label: "AI Video Player" },
+      { img: aiVideoScreen2, label: "Scene Summary" },
+      { img: aiVideoScreen3, label: "Smart Subtitles" },
+      { img: aiVideoScreen4, label: "Playlist View" },
+      { img: aiVideoScreen5, label: "Settings" },
     ],
     links: {},
   },
